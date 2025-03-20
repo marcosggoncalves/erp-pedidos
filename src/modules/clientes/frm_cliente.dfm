@@ -9,7 +9,6 @@ object Tfrm_cliente: TTfrm_cliente
   DefaultMonitor = dmDesktop
   DockSite = True
   DoubleBuffered = True
-  DragKind = dkDock
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -19,7 +18,6 @@ object Tfrm_cliente: TTfrm_cliente
   Position = poMainFormCenter
   PrintScale = poNone
   Scaled = False
-  Visible = True
   PixelsPerInch = 96
   TextHeight = 13
   object abas_navegacao: TPageControl
@@ -30,10 +28,8 @@ object Tfrm_cliente: TTfrm_cliente
     ActivePage = aba_cadastro
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 648
     object aba_cadastro: TTabSheet
       Caption = 'Cadastro'
-      ExplicitWidth = 759
       object label_cadastro: TLabel
         Left = 201
         Top = 11
@@ -315,9 +311,6 @@ object Tfrm_cliente: TTfrm_cliente
     object aba_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 28
-      ExplicitWidth = 640
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -330,7 +323,6 @@ object Tfrm_cliente: TTfrm_cliente
         ParentBackground = False
         TabOrder = 0
         OnClick = comboBox_filtro_cliente_change
-        ExplicitLeft = -6
         object aba_titulo_pesquisa: TLabel
           Left = 12
           Top = 11
@@ -503,21 +495,16 @@ object Tfrm_cliente: TTfrm_cliente
         OnCellClick = ddbridcell_selecionar
       end
     end
-    object aba_lancar_pedido: TTabSheet
-      Caption = 'Lan'#231'ar Pedido'
-      ImageIndex = 2
-      ExplicitWidth = 640
-    end
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 268
-    Top = 256
+    Left = 596
+    Top = 424
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 372
-    Top = 248
+    Left = 596
+    Top = 376
   end
 end

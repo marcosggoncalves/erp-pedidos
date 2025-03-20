@@ -15,7 +15,6 @@ type
     abas_navegacao: TPageControl;
     aba_cadastro: TTabSheet;
     aba_pesquisa: TTabSheet;
-    aba_lancar_pedido: TTabSheet;
     panel_btns: TPanel;
     btn_salvar: TBitBtn;
     btn_limpar: TBitBtn;

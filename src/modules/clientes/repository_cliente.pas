@@ -17,8 +17,7 @@ type
     function Adicionar(ACliente: TCliente): Boolean;
     function Atualizar(ACliente: TCliente): Boolean;
     function Remover(AId: Integer): Boolean;
-    function ListarTodos(tipo: String = ''; search: String = '')
-      : TList<TCliente>;
+    function ListarTodos(tipo: String = ''; search: String = '') : TList<TCliente>;
   end;
 
 implementation
