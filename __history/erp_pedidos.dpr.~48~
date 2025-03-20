@@ -1,0 +1,18 @@
+program erp_pedidos;
+
+uses
+  Vcl.Forms,
+  frm_cliente in 'src\modulos\clientes\frm_cliente.pas' { Fm_cliente},
+  entity_cliente in 'src\modulos\clientes\entity_cliente.pas',
+  interface_cliente in 'src\modulos\clientes\interface_cliente.pas',
+  repository_cliente in 'src\modulos\clientes\repository_cliente.pas',
+  factory_cliente in 'src\modulos\clientes\factory_cliente.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFm_cliente, Fm_cliente);
+  Application.Run;
+end.

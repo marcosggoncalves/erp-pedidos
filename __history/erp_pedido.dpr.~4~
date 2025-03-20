@@ -1,0 +1,15 @@
+program erp_pedido;
+
+uses
+  Vcl.Forms,
+  uClientes in 'src\modulos\clientes\uClientes.pas' {Cliente},
+  uClientes in 'uClientes.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TCliente, Cliente);
+  Application.Run;
+end.

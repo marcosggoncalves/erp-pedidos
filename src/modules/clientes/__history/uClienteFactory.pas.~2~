@@ -1,0 +1,25 @@
+unit uClienteFactory;
+
+interface
+
+uses
+  uCliente, System.SysUtils;
+
+type
+  TClienteFactory = class
+  public
+    class function CriarCliente(ID: Integer = 0; Nome: string = ''; CPF: string = ''): TCliente;
+  end;
+
+implementation
+
+class function TClienteFactory.CriarCliente(ID: Integer; Nome: string; CPF: string): TCliente;
+begin
+  Result := TCliente.Create;
+  Result.ID := ID;
+  Result.Nome := Nome;
+  Result.CPF := CPF;
+end;
+
+end.
+

@@ -1,0 +1,33 @@
+unit uCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls;
+
+type
+  TFm_cliente = class(TForm)
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Fm_cliente: TFm_cliente;
+  i: Integer;
+  MaxWidth: Integer;
+
+  begin
+  MaxWidth := 0;
+  for i := 0 to Panel1.ControlCount - 1 do
+    MaxWidth := Max(MaxWidth, Panel1.Controls[i].Left + Panel1.Controls[i].Width);
+  Panel1.Width := MaxWidth;
+
+implementation
+
+{$R *.dfm}
+
+end.

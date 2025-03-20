@@ -1,0 +1,46 @@
+object Fm_cliente: TFm_cliente
+  Left = 0
+  Top = 0
+  ParentCustomHint = False
+  Align = alClient
+  AutoSize = True
+  BiDiMode = bdLeftToRight
+  BorderStyle = bsSingle
+  Caption = 'Clientes'
+  ClientHeight = 414
+  ClientWidth = 689
+  Color = clBtnFace
+  DragMode = dmAutomatic
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  ParentBiDiMode = False
+  Scaled = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object abas: TPageControl
+    Left = 0
+    Top = 0
+    Width = 689
+    Height = 414
+    ActivePage = TabSheet3
+    Align = alClient
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Novo Cadastro'
+      ParentShowHint = False
+      ShowHint = False
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Pesquisar'
+      ImageIndex = 1
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Lan'#231'ar Pedido'
+      ImageIndex = 2
+    end
+  end
+end

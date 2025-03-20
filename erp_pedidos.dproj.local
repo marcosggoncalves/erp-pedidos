@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/03/18 23:16:21.000.202,=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/03/19 17:53:59.000.039,=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/03/19 17:59:37.000.175,=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/03/20 01:47:36.808,=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/03/20 01:48:06.285,C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\frm_cliente.pas=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/03/20 01:48:06.285,C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\frm_cliente.dfm=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/03/20 01:48:18.166,C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\erp_pedidos.dproj=C:\Users\Marcos Lopes\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/03/20 01:51:31.586,=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\entity_cliente.pas</Transaction>
+    <Transaction>2025/03/20 01:51:32.810,=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\factory_cliente.pas</Transaction>
+    <Transaction>2025/03/20 01:51:32.816,=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\interface_cliente.pas</Transaction>
+    <Transaction>2025/03/20 01:51:32.821,=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\src\modules\clientes\repository_cliente.pas</Transaction>
+  </Transactions>
+</BorlandProject>

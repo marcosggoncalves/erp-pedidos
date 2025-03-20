@@ -1,0 +1,37 @@
+unit frm_cliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Data.DB, Vcl.Mask, Vcl.DBCtrls, conexao, repository_cliente;
+
+type
+  TFm_cliente = class(TForm)
+    abas: TPageControl;
+    aba_cadastro: TTabSheet;
+    aba_lancar_pedido: TTabSheet;
+    panel_btns: TPanel;
+    aba_pesquisa: TTabSheet;
+    btn_novo_cadastro: TBitBtn;
+    btn_editar: TBitBtn;
+    btn_deletar: TBitBtn;
+    btn_salvar: TBitBtn;
+    lbl_titulo_ficha: TLabel;
+    label_id: TLabel;
+    input_id: TEdit;
+    label_nome_cliente: TLabel;
+    input_nome_cliente: TEdit;
+    label_documento_clientye: TLabel;
+    input_cpf_cnpj: TEdit;
+    procedure FormCreate(Sender: TObject);
+  private
+     ClienteRepository: TClienteRepository;
+  public
+    { Public declarations }
+  end;
+
+
+
+end.
