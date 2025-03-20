@@ -102,13 +102,17 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="src\modules\clientes\frm_cliente.pas">
-            <Form>Form1</Form>
+            <Form>Tfrm_cliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\modules\clientes\entity_cliente.pas"/>
         <DCCReference Include="src\modules\clientes\factory_cliente.pas"/>
         <DCCReference Include="src\modules\clientes\interface_cliente.pas"/>
         <DCCReference Include="src\modules\clientes\repository_cliente.pas"/>
+        <DCCReference Include="src\common\conexao.pas">
+            <Form>dm</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

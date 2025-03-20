@@ -3,26 +3,35 @@ unit repository_cliente;
 interface
 
 uses
-  entity_cliente, interface_cliente, System.Generics.Collections, FireDAC.Comp.Client, Data.DB, System.SysUtils;
+  System.SysUtils, System.Classes, System.Generics.Collections,
+  Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.Stan.Def,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Stan.Option, FireDAC.UI.Intf,
+  FireDAC.VCLUI.Wait, entity_cliente, interface_cliente, conexao;
 
 type
   TClienteRepository = class(TInterfacedObject, IClienteRepository)
   private
-    FConexao: TFDConnection;
+    function CriarQuery: TFDQuery;
   public
-    constructor Create(AConexao: TFDConnection);
+    constructor Create;
     function Adicionar(ACliente: TCliente): Boolean;
     function Atualizar(ACliente: TCliente): Boolean;
     function Remover(AId: Integer): Boolean;
-    function BuscarPorId(AId: Integer): TCliente;
-    function ListarTodos: TList<TCliente>;
+    function ListarTodos(tipo: String = ''; search: String = '')
+      : TList<TCliente>;
   end;
 
 implementation
 
-constructor TClienteRepository.Create(AConexao: TFDConnection);
+constructor TClienteRepository.Create;
 begin
-  FConexao := AConexao;
+  inherited Create;
+end;
+
+function TClienteRepository.CriarQuery: TFDQuery;
+begin
+  Result := TFDQuery.Create(nil);
+  Result.Connection := conexao.dm.FDConexao;
 end;
 
 function TClienteRepository.Adicionar(ACliente: TCliente): Boolean;
@@ -30,14 +39,20 @@ var
   Qry: TFDQuery;
 begin
   Result := False;
-  Qry := TFDQuery.Create(nil);
+  Qry := CriarQuery;
   try
-    Qry.Connection := FConexao;
-    Qry.SQL.Text := 'INSERT INTO cliente (nome, cpf_cnpj) VALUES (:nome, :cpf_cnpj)';
+    Qry.SQL.Text :=
+      'INSERT INTO cliente (nome, cpf_cnpj) VALUES (:nome, :cpf_cnpj)';
     Qry.ParamByName('nome').AsString := ACliente.Nome;
     Qry.ParamByName('cpf_cnpj').AsString := ACliente.CpfCnpj;
-    Qry.ExecSQL;
-    Result := Qry.RowsAffected > 0;
+
+    try
+      Qry.ExecSQL;
+      Result := Qry.RowsAffected > 0;
+    except
+      on E: Exception do
+        raise Exception.Create('Erro ao adicionar cliente: ' + E.Message);
+    end;
   finally
     Qry.Free;
   end;
@@ -48,15 +63,21 @@ var
   Qry: TFDQuery;
 begin
   Result := False;
-  Qry := TFDQuery.Create(nil);
+  Qry := CriarQuery;
   try
-    Qry.Connection := FConexao;
-    Qry.SQL.Text := 'UPDATE cliente SET nome = :nome, cpf_cnpj = :cpf_cnpj WHERE id = :id';
+    Qry.SQL.Text :=
+      'UPDATE cliente SET nome = :nome, cpf_cnpj = :cpf_cnpj WHERE id = :id';
     Qry.ParamByName('nome').AsString := ACliente.Nome;
     Qry.ParamByName('cpf_cnpj').AsString := ACliente.CpfCnpj;
     Qry.ParamByName('id').AsInteger := ACliente.Id;
-    Qry.ExecSQL;
-    Result := Qry.RowsAffected > 0;
+
+    try
+      Qry.ExecSQL;
+      Result := Qry.RowsAffected > 0;
+    except
+      on E: Exception do
+        raise Exception.Create('Erro ao atualizar cliente: ' + E.Message);
+    end;
   finally
     Qry.Free;
   end;
@@ -67,52 +88,52 @@ var
   Qry: TFDQuery;
 begin
   Result := False;
-  Qry := TFDQuery.Create(nil);
+  Qry := CriarQuery;
   try
-    Qry.Connection := FConexao;
     Qry.SQL.Text := 'DELETE FROM cliente WHERE id = :id';
     Qry.ParamByName('id').AsInteger := AId;
-    Qry.ExecSQL;
-    Result := Qry.RowsAffected > 0;
-  finally
-    Qry.Free;
-  end;
-end;
 
-function TClienteRepository.BuscarPorId(AId: Integer): TCliente;
-var
-  Qry: TFDQuery;
-begin
-  Result := nil;
-  Qry := TFDQuery.Create(nil);
-  try
-    Qry.Connection := FConexao;
-    Qry.SQL.Text := 'SELECT * FROM cliente WHERE id = :id';
-    Qry.ParamByName('id').AsInteger := AId;
-    Qry.Open;
-    if not Qry.IsEmpty then
-    begin
-      Result := TCliente.Create;
-      Result.Id := Qry.FieldByName('id').AsInteger;
-      Result.Nome := Qry.FieldByName('nome').AsString;
-      Result.CpfCnpj := Qry.FieldByName('cpf_cnpj').AsString;
+    try
+      Qry.ExecSQL;
+      Result := Qry.RowsAffected > 0;
+    except
+      on E: Exception do
+        raise Exception.Create('Erro ao remover cliente: ' + E.Message);
     end;
   finally
     Qry.Free;
   end;
 end;
 
-function TClienteRepository.ListarTodos: TList<TCliente>;
+function TClienteRepository.ListarTodos(tipo: String = ''; search: String = '')
+  : TList<TCliente>;
 var
   Qry: TFDQuery;
   Cliente: TCliente;
+  SQLQuery: String;
 begin
   Result := TList<TCliente>.Create;
-  Qry := TFDQuery.Create(nil);
+  Qry := CriarQuery;
+
   try
-    Qry.Connection := FConexao;
-    Qry.SQL.Text := 'SELECT * FROM cliente ORDER BY nome';
+    SQLQuery := 'SELECT * FROM cliente';
+
+    if (tipo = 'NOME') or (tipo = 'CPF_CNPJ') then
+    begin
+      SQLQuery := SQLQuery + ' WHERE ' + tipo + ' LIKE :Tipo';
+    end;
+
+    SQLQuery := SQLQuery + ' ORDER BY nome';
+
+    Qry.SQL.Text := SQLQuery;
+
+    if (tipo = 'NOME') or (tipo = 'CPF_CNPJ') then
+    begin
+      Qry.ParamByName('Tipo').AsString := '%' + search + '%';
+    end;
+
     Qry.Open;
+
     while not Qry.Eof do
     begin
       Cliente := TCliente.Create;
