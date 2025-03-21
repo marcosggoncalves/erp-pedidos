@@ -12,7 +12,10 @@ uses
   entity_produto in 'src\modules\produtos\entity_produto.pas',
   factory_produto in 'src\modules\produtos\factory_produto.pas',
   interface_produto in 'src\modules\produtos\interface_produto.pas',
-  repository_produto in 'src\modules\produtos\repository_produto.pas';
+  repository_produto in 'src\modules\produtos\repository_produto.pas',
+  frm_produto in 'src\modules\produtos\frm_produto.pas' {Tfrm_produto},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
@@ -21,5 +24,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TTfrm_home, Tfrm_home);
   Application.CreateForm(Tdm, dm);
+  Application.CreateForm(TTfrm_produto, Tfrm_produto);
   Application.Run;
 end.

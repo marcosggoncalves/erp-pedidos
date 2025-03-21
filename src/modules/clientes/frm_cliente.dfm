@@ -33,9 +33,9 @@ object Tfrm_cliente: TTfrm_cliente
       object label_cadastro: TLabel
         Left = 201
         Top = 11
-        Width = 104
+        Width = 110
         Height = 13
-        Caption = 'FICHA CADASTRO :'
+        Caption = 'FICHA CADASTRAL :'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
