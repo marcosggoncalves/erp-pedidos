@@ -10,7 +10,7 @@ type
     function Adicionar(AProduto: TProduto): Boolean;
     function Atualizar(AProduto: TProduto): Boolean;
     function Remover(AId:Integer): Boolean;
-    function ListarTodos(Tipo: string = ''; Search: string = ''): TList<TProduto>;
+    function ListarTodos(Search: string = ''): TList<TProduto>;
   end;
 
 implementation

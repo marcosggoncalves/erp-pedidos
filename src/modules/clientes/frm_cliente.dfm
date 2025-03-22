@@ -4,7 +4,7 @@ object Tfrm_cliente: TTfrm_cliente
   BorderStyle = bsSingle
   Caption = 'Clientes'
   ClientHeight = 484
-  ClientWidth = 656
+  ClientWidth = 705
   Color = clBtnFace
   DefaultMonitor = dmDesktop
   DockSite = True
@@ -23,13 +23,15 @@ object Tfrm_cliente: TTfrm_cliente
   object abas_navegacao: TPageControl
     Left = 0
     Top = 0
-    Width = 656
+    Width = 705
     Height = 484
     ActivePage = aba_cadastro
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 656
     object aba_cadastro: TTabSheet
       Caption = 'Cadastro'
+      ExplicitWidth = 648
       object label_cadastro: TLabel
         Left = 201
         Top = 11
@@ -45,7 +47,7 @@ object Tfrm_cliente: TTfrm_cliente
       end
       object label_cpf_cnpj_cliente: TLabel
         Left = 416
-        Top = 38
+        Top = 30
         Width = 157
         Height = 13
         Caption = 'DOCUMENTO (CPF/OU CNPJ):'
@@ -57,8 +59,8 @@ object Tfrm_cliente: TTfrm_cliente
         ParentFont = False
       end
       object label_id_cliente: TLabel
-        Left = 201
-        Top = 38
+        Left = 200
+        Top = 30
         Width = 16
         Height = 13
         Hint = 'Identificador registro'
@@ -71,8 +73,8 @@ object Tfrm_cliente: TTfrm_cliente
         ParentFont = False
       end
       object label_nome_razao: TLabel
-        Left = 201
-        Top = 84
+        Left = 202
+        Top = 78
         Width = 133
         Height = 13
         Caption = 'Nome Completo/Raz'#227'o:'
@@ -269,8 +271,8 @@ object Tfrm_cliente: TTfrm_cliente
       end
       object edit_documento_cliente: TEdit
         Left = 416
-        Top = 57
-        Width = 221
+        Top = 49
+        Width = 257
         Height = 21
         Align = alCustom
         CharCase = ecUpperCase
@@ -278,8 +280,8 @@ object Tfrm_cliente: TTfrm_cliente
         TextHint = 'Digite o documento informado'
       end
       object edit_id_cliente: TEdit
-        Left = 201
-        Top = 57
+        Left = 200
+        Top = 49
         Width = 201
         Height = 21
         Align = alCustom
@@ -298,9 +300,9 @@ object Tfrm_cliente: TTfrm_cliente
         TextHint = 'Identificador Registro'
       end
       object edit_nome_cliente: TEdit
-        Left = 200
-        Top = 103
-        Width = 437
+        Left = 201
+        Top = 97
+        Width = 472
         Height = 21
         Align = alCustom
         CharCase = ecUpperCase
@@ -311,6 +313,7 @@ object Tfrm_cliente: TTfrm_cliente
     object aba_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
+      ExplicitWidth = 648
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -322,7 +325,7 @@ object Tfrm_cliente: TTfrm_cliente
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
-        OnClick = comboBox_filtro_cliente_change
+        OnClick = combobox_filtro_cliente_change
         object aba_titulo_pesquisa: TLabel
           Left = 12
           Top = 11
@@ -410,7 +413,7 @@ object Tfrm_cliente: TTfrm_cliente
           CharCase = ecUpperCase
           TabOrder = 1
           Text = 'PESQUISAR POR?'
-          OnChange = comboBox_filtro_cliente_change
+          OnSelect = combobox_filtro_cliente_change
           Items.Strings = (
             'NOME'
             'CPF_CNPJ')
@@ -431,6 +434,7 @@ object Tfrm_cliente: TTfrm_cliente
           Width = 161
           Height = 25
           Caption = 'Limpar'
+          Enabled = False
           Glyph.Data = {
             52050000424D5205000000000000420000002800000012000000120000000100
             20000300000010050000000000000000000000000000000000000000FF0000FF
@@ -482,7 +486,7 @@ object Tfrm_cliente: TTfrm_cliente
       object DBGrid1: TDBGrid
         Left = 185
         Top = 0
-        Width = 463
+        Width = 512
         Height = 456
         Align = alClient
         DataSource = DataSource1
@@ -492,19 +496,19 @@ object Tfrm_cliente: TTfrm_cliente
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnCellClick = ddbridcell_selecionar
+        OnCellClick = dbgridcell_selecionar
       end
     end
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 596
-    Top = 424
+    Left = 628
+    Top = 416
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 596
-    Top = 376
+    Left = 628
+    Top = 360
   end
 end

@@ -17,7 +17,7 @@ type
     function Adicionar(AProduto: TProduto): Boolean;
     function Atualizar(AProduto: TProduto): Boolean;
     function Remover(AId: Integer): Boolean;
-    function ListarTodos(tipo: String = ''; search: String = ''): TList<TProduto>;
+    function ListarTodos(search: String = ''): TList<TProduto>;
   end;
 
 implementation
@@ -106,7 +106,7 @@ begin
   end;
 end;
 
-function TProdutoRepository.ListarTodos(tipo: String = ''; search: String = ''): TList<TProduto>;
+function TProdutoRepository.ListarTodos(search: String = ''): TList<TProduto>;
 var
   Qry: TFDQuery;
   Produto: TProduto;
@@ -118,16 +118,16 @@ begin
   try
     SQLQuery := 'SELECT * FROM produto';
 
-    if (tipo = 'NOME') then
+    if (search <> '') then
     begin
-      SQLQuery := SQLQuery + ' WHERE ' + tipo + ' LIKE :Tipo';
+      SQLQuery := SQLQuery + ' WHERE nome LIKE :Tipo';
     end;
 
     SQLQuery := SQLQuery + ' ORDER BY nome';
 
     Qry.SQL.Text := SQLQuery;
 
-    if (tipo = 'NOME')   then
+    if (search <> '')   then
     begin
       Qry.ParamByName('Tipo').AsString := '%' + search + '%';
     end;
