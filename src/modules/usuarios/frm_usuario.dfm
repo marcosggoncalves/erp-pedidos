@@ -92,13 +92,15 @@ object Tfrm_usuario: TTfrm_usuario
         ParentFont = False
       end
       object panel_btns_usuarios: TPanel
-        Left = 9
-        Top = -2
+        Left = 0
+        Top = 0
         Width = 185
-        Height = 445
+        Height = 446
+        Align = alLeft
         Color = clMenu
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 445
         object titulo_aba_cadastro: TLabel
           Left = 12
           Top = 11
@@ -326,10 +328,6 @@ object Tfrm_usuario: TTfrm_usuario
     object aba_usuario_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0

@@ -23,7 +23,8 @@ uses
   interface_usuario in 'src\modules\usuarios\interface_usuario.pas',
   repository_usuario in 'src\modules\usuarios\repository_usuario.pas',
   frm_home in 'src\modules\home\frm_home.pas' {Tfrm_home},
-  mascara_cnpj_cpf in 'src\utils\mascara_cnpj_cpf.pas';
+  mascara_cnpj_cpf in 'src\utils\mascara_cnpj_cpf.pas',
+  frm_login in 'src\modules\login\frm_login.pas' {Tfrm_login};
 
 {$R *.res}
 
@@ -31,6 +32,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
-  Application.CreateForm(TTfrm_home, Tfrm_home);
+  Application.CreateForm(TTfrm_login, Tfrm_login);
   Application.Run;
 end.
