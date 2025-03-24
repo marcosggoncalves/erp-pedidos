@@ -102,8 +102,7 @@ begin
     Id := StrToInt(edit_usuario_id.Text);
   end;
 
-  Usuario := TUsuarioFactory.CriarUsuario(Id, edit_usuario_nome.Text,
-    edit_usuario_cpf.Text, edit_usuario_senha.Text);
+  Usuario := TUsuarioFactory.CriarUsuario(Id, edit_usuario_nome.Text, edit_usuario_cpf.Text, edit_usuario_senha.Text);
 
   if edit_usuario_id.Text <> '' then
   begin

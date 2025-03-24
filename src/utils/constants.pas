@@ -11,6 +11,7 @@ const
   MsgSalvoSucesso = 'Cadastro efetuado com sucesso!';
   MsgErroSalvar = 'Erro ao salvar cadastro!';
   MsgIDInvalido = 'ID inválido!';
+  MsgLoginInvalido = 'CPF/Senha inválido!';
 
 implementation
 

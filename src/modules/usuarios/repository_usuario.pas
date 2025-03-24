@@ -17,6 +17,7 @@ type
     function Adicionar(body: TUsuario): Boolean;
     function Atualizar(body: TUsuario): Boolean;
     function Remover(Id: Integer): Boolean;
+    function Login(body: TUsuario): TUsuario;
     function ListarTodos(tipo: String = ''; search: String = '') : TList<TUsuario>;
   end;
 
@@ -35,83 +36,109 @@ end;
 
 function TUsuarioRepository.Adicionar(body: TUsuario): Boolean;
 var
-  Qry: TFDQuery;
+  TQuerySQL: TFDQuery;
 begin
   Result := False;
-  Qry := CriarQuery;
+  TQuerySQL := CriarQuery;
   try
-    Qry.SQL.Text := 'INSERT INTO USUARIO (cpf, usuario, senha) VALUES (:cpf, :usuario, :senha)';
-    Qry.ParamByName('cpf').AsString := body.CPF;
-    Qry.ParamByName('usuario').AsString := body.Usuario;
-    Qry.ParamByName('senha').AsString := body.Senha;
+    TQuerySQL.SQL.Text := 'INSERT INTO USUARIO (cpf, usuario, senha) VALUES (:cpf, :usuario, :senha)';
+    TQuerySQL.ParamByName('cpf').AsString := body.CPF;
+    TQuerySQL.ParamByName('usuario').AsString := body.Usuario;
+    TQuerySQL.ParamByName('senha').AsString := body.Senha;
 
     try
-      Qry.ExecSQL;
-      Result := Qry.RowsAffected > 0;
+      TQuerySQL.ExecSQL;
+      Result := TQuerySQL.RowsAffected > 0;
     except
       on E: Exception do
         raise Exception.Create('Erro ao adicionar Usuario: ' + E.Message);
     end;
   finally
-    Qry.Free;
+    TQuerySQL.Free;
   end;
 end;
 
 function TUsuarioRepository.Atualizar(body: TUsuario): Boolean;
 var
-  Qry: TFDQuery;
+  TQuerySQL: TFDQuery;
 begin
   Result := False;
-  Qry := CriarQuery;
+  TQuerySQL := CriarQuery;
   try
-    Qry.SQL.Text := 'UPDATE USUARIO SET usuario = :usuario, cpf = :cpf, senha = :senha WHERE id = :id';
-    Qry.ParamByName('usuario').AsString := body.Usuario;
-    Qry.ParamByName('cpf').AsString := body.CPF;
-    Qry.ParamByName('senha').AsString := body.Senha;
-    Qry.ParamByName('id').AsInteger := body.Id;
+    TQuerySQL.SQL.Text := 'UPDATE USUARIO SET usuario = :usuario, cpf = :cpf, senha = :senha WHERE id = :id';
+    TQuerySQL.ParamByName('usuario').AsString := body.Usuario;
+    TQuerySQL.ParamByName('cpf').AsString := body.CPF;
+    TQuerySQL.ParamByName('senha').AsString := body.Senha;
+    TQuerySQL.ParamByName('id').AsInteger := body.Id;
 
     try
-      Qry.ExecSQL;
-      Result := Qry.RowsAffected > 0;
+      TQuerySQL.ExecSQL;
+      Result := TQuerySQL.RowsAffected > 0;
     except
       on E: Exception do
         raise Exception.Create('Erro ao atualizar produto: ' + E.Message);
     end;
   finally
-    Qry.Free;
+    TQuerySQL.Free;
   end;
 end;
 
 function TUsuarioRepository.Remover(Id: Integer): Boolean;
 var
-  Qry: TFDQuery;
+  TQuerySQL: TFDQuery;
 begin
   Result := False;
-  Qry := CriarQuery;
+  TQuerySQL := CriarQuery;
   try
-    Qry.SQL.Text := 'DELETE FROM USUARIO WHERE id = :id';
-    Qry.ParamByName('id').AsInteger := Id;
+    TQuerySQL.SQL.Text := 'DELETE FROM USUARIO WHERE id = :id';
+    TQuerySQL.ParamByName('id').AsInteger := Id;
 
     try
-      Qry.ExecSQL;
-      Result := Qry.RowsAffected > 0;
+      TQuerySQL.ExecSQL;
+      Result := TQuerySQL.RowsAffected > 0;
     except
       on E: Exception do
         raise Exception.Create('Erro ao remover Usuario: ' + E.Message);
     end;
   finally
-    Qry.Free;
+    TQuerySQL.Free;
+  end;
+end;
+
+function TUsuarioRepository.Login(body: TUsuario): TUsuario;
+var
+  TQuerySQL: TFDQuery;
+begin
+  Result := nil;
+  TQuerySQL := CriarQuery;
+
+  try
+    TQuerySQL.SQL.Text := 'SELECT * FROM USUARIO WHERE cpf = :cpf AND senha = :senha';
+    TQuerySQL.ParamByName('cpf').AsString := body.CPF;
+    TQuerySQL.ParamByName('senha').AsString := body.Senha;
+
+    TQuerySQL.Open;
+
+    if not TQuerySQL.IsEmpty then
+    begin
+      Result := TUsuario.Create;
+      Result.Id := TQuerySQL.FieldByName('id').AsInteger;
+      Result.CPF := TQuerySQL.FieldByName('cpf').AsString;
+      Result.Usuario := TQuerySQL.FieldByName('usuario').AsString;
+    end;
+  finally
+    TQuerySQL.Free;
   end;
 end;
 
 function TUsuarioRepository.ListarTodos(tipo: String = ''; search: String = '') : TList<TUsuario>;
 var
-  Qry: TFDQuery;
+  TQuerySQL: TFDQuery;
   Usuario: TUsuario;
   SQLQuery: String;
 begin
   Result := TList<TUsuario>.Create;
-  Qry := CriarQuery;
+  TQuerySQL := CriarQuery;
 
   try
     SQLQuery := 'SELECT * FROM USUARIO';
@@ -123,26 +150,26 @@ begin
 
     SQLQuery := SQLQuery + ' ORDER BY usuario';
 
-    Qry.SQL.Text := SQLQuery;
+    TQuerySQL.SQL.Text := SQLQuery;
 
     if (tipo = 'USUARIO') or (tipo = 'CPF') then
     begin
-      Qry.ParamByName('Tipo').AsString := '%' + search + '%';
+      TQuerySQL.ParamByName('Tipo').AsString := '%' + search + '%';
     end;
 
-    Qry.Open;
+    TQuerySQL.Open;
 
-    while not Qry.Eof do
+    while not TQuerySQL.Eof do
     begin
       Usuario := TUsuario.Create;
-      Usuario.Id := Qry.FieldByName('id').AsInteger;
-      Usuario.CPF := Qry.FieldByName('cpf').AsString;
-      Usuario.Usuario := Qry.FieldByName('usuario').AsString;
+      Usuario.Id := TQuerySQL.FieldByName('id').AsInteger;
+      Usuario.CPF := TQuerySQL.FieldByName('cpf').AsString;
+      Usuario.Usuario := TQuerySQL.FieldByName('usuario').AsString;
       Result.Add(Usuario);
-      Qry.Next;
+      TQuerySQL.Next;
     end;
   finally
-    Qry.Free;
+    TQuerySQL.Free;
   end;
 end;
 

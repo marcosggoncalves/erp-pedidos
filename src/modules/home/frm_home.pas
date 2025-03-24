@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, frm_cliente,frm_produto, frm_usuario;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, frm_cliente,frm_produto, frm_usuario, sessao;
 
 type
   TTfrm_home = class(TForm)
@@ -76,7 +76,8 @@ procedure TTfrm_home.Timer1Timer(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := Datetostr(now);
   StatusBar1.Panels[1].Text := TimeToStr(now);
-  StatusBar1.Panels[2].Text := 'Seja bem vindo, Marcos Lopes';
+  StatusBar1.Panels[2].Text := 'Seja bem vindo, ' + DataModule1.logado.Usuario;
+  StatusBar1.Panels[3].Text := DataModule1.logado.CPF;
 end;
 
 procedure TTfrm_home.Usuarios1Click(Sender: TObject);

@@ -947,16 +947,24 @@ object Tfrm_home: TTfrm_home
     Height = 19
     Panels = <
       item
+        Alignment = taCenter
         Width = 100
       end
       item
+        Alignment = taCenter
         Width = 100
       end
       item
+        Alignment = taCenter
         Width = 200
       end
       item
-        Width = 50
+        Alignment = taCenter
+        Width = 200
+      end
+      item
+        Alignment = taCenter
+        Width = 100
       end>
   end
   object MainMenu1: TMainMenu

@@ -139,6 +139,12 @@
         <DCCReference Include="src\utils\mascara_cnpj_cpf.pas"/>
         <DCCReference Include="src\modules\login\frm_login.pas">
             <Form>Tfrm_login</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\common\sessao.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

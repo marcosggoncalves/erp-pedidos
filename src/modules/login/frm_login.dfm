@@ -3,9 +3,9 @@ object Tfrm_login: TTfrm_login
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Acessar sistema'
-  ClientHeight = 204
-  ClientWidth = 241
+  Caption = 'Entrar'
+  ClientHeight = 201
+  ClientWidth = 243
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -43,42 +43,50 @@ object Tfrm_login: TTfrm_login
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object edit_login_usuario: TEdit
+  object edit_login_cpf: TEdit
     Left = 8
     Top = 75
     Width = 225
     Height = 21
     TabOrder = 0
     TextHint = 'Digite seu CPF'
+    OnChange = edit_login_cpf_mascara
   end
   object edit_login_senha: TEdit
     Left = 8
     Top = 121
     Width = 225
     Height = 21
+    PasswordChar = '*'
     TabOrder = 1
     TextHint = 'Digite sua senha'
   end
+  object btn_fechar: TBitBtn
+    Left = 77
+    Top = 156
+    Width = 75
+    Height = 25
+    Caption = 'Sair'
+    Kind = bkCancel
+    NumGlyphs = 2
+    TabOrder = 2
+    OnClick = btn_fechar_click
+  end
   object btn_entrar: TBitBtn
-    Left = 41
-    Top = 160
+    Left = 158
+    Top = 156
     Width = 75
     Height = 25
     Caption = 'Entrar'
-    TabOrder = 2
-  end
-  object btn_cancelar: TBitBtn
-    Left = 122
-    Top = 160
-    Width = 75
-    Height = 25
-    Caption = 'Cancelar'
+    Kind = bkOK
+    NumGlyphs = 2
     TabOrder = 3
+    OnClick = btn_entrar_click
   end
   object panel_login: TPanel
     Left = 0
     Top = 0
-    Width = 241
+    Width = 243
     Height = 41
     Align = alTop
     Caption = 'ERP - PEDIDOS'
@@ -89,8 +97,5 @@ object Tfrm_login: TTfrm_login
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
-    ExplicitLeft = 8
-    ExplicitTop = 1
-    ExplicitWidth = 185
   end
 end
