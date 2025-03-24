@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, frm_cliente,frm_produto, frm_usuario, sessao;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, frm_cliente,frm_produto, frm_usuario, sessao,
+  frm_pedido, frm_pedidos_vendas;
 
 type
   TTfrm_home = class(TForm)
@@ -27,6 +28,8 @@ type
     procedure Produtos1Click(Sender: TObject);
     procedure FinalizarSistema1Click(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);
+    procedure NovoPedido2Click(Sender: TObject);
+    procedure NovoPedido1Click(Sender: TObject);
   end;
 
 var
@@ -58,12 +61,37 @@ begin
     end;
 end;
 
+procedure TTfrm_home.NovoPedido1Click(Sender: TObject);
+var
+   FrmPedidosVendas : TTfrm_pedidos_vendas;
+begin
+   FrmPedidosVendas := TTfrm_pedidos_vendas.Create(Self);
+    try
+       FrmPedidosVendas.ShowModal;
+    finally
+      FrmPedidosVendas.Free;
+      FrmPedidosVendas := nil;
+    end;
+end;
+
+procedure TTfrm_home.NovoPedido2Click(Sender: TObject);
+var
+  FrmPedidoLancar : TTFrm_lancar_pedido;
+begin
+    FrmPedidoLancar := TTFrm_lancar_pedido.Create(Self);
+    try
+       FrmPedidoLancar.ShowModal;
+    finally
+      FrmPedidoLancar.Free;
+      FrmPedidoLancar := nil;
+    end;
+end;
+
 procedure TTfrm_home.Produtos1Click(Sender: TObject);
 var
   FrmProduto: TTfrm_produto;
 begin
   FrmProduto := TTfrm_produto.Create(Self);
-
   try
     FrmProduto.ShowModal;
   finally

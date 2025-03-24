@@ -938,8 +938,7 @@ object Tfrm_home: TTfrm_home
     ShowHint = True
     Stretch = True
     Transparent = True
-    ExplicitWidth = 612
-    ExplicitHeight = 408
+    ExplicitTop = -6
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -967,8 +966,6 @@ object Tfrm_home: TTfrm_home
         Alignment = taCenter
         Width = 100
       end>
-    ExplicitTop = 467
-    ExplicitWidth = 704
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -991,10 +988,12 @@ object Tfrm_home: TTfrm_home
     object Pedidos1: TMenuItem
       Caption = 'Pedidos'
       object NovoPedido1: TMenuItem
-        Caption = 'Registrados'
+        Caption = 'Pedidos'
+        OnClick = NovoPedido1Click
       end
       object NovoPedido2: TMenuItem
-        Caption = 'Lan'#231'ar'
+        Caption = 'Lan'#231'ar novo pedido'
+        OnClick = NovoPedido2Click
       end
     end
     object Sair1: TMenuItem

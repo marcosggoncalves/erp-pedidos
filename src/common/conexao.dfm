@@ -11,6 +11,7 @@ object dm: Tdm
       'Password=masterkey'
       'Port=3050'
       'DriverID=fB')
+    Connected = True
     Left = 32
     Top = 48
   end
