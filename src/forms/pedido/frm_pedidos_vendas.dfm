@@ -1,6 +1,7 @@
 object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Pedidos '
   ClientHeight = 484
@@ -23,6 +24,8 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
     Height = 484
     ActivePage = aba_vendas
     Align = alClient
+    ParentShowHint = False
+    ShowHint = False
     TabOrder = 0
     StyleElements = [seFont, seClient]
     object aba_vendas: TTabSheet
