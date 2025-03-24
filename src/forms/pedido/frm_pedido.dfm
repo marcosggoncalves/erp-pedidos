@@ -4,8 +4,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Lan'#231'ar novo pedido'
-  ClientHeight = 363
-  ClientWidth = 691
+  ClientHeight = 484
+  ClientWidth = 705
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
   PixelsPerInch = 96
   TextHeight = 13
   object label_listagem_produtos: TLabel
-    Left = 208
-    Top = 8
+    Left = 191
+    Top = 13
     Width = 54
     Height = 13
     Caption = 'Produtos:'
@@ -34,13 +34,15 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
   object panel_info_pedido: TPanel
     Left = 0
     Top = 0
-    Width = 201
-    Height = 363
+    Width = 185
+    Height = 484
     Align = alLeft
+    BevelOuter = bvNone
+    Color = clBtnHighlight
+    ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 446
     object label_pedido_usuario: TLabel
-      Left = 7
+      Left = 12
       Top = 13
       Width = 46
       Height = 13
@@ -66,8 +68,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       ParentFont = False
     end
     object label_cliente: TLabel
-      Left = 7
-      Top = 61
+      Left = 12
+      Top = 62
       Width = 42
       Height = 13
       Caption = 'Cliente:'
@@ -79,7 +81,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       ParentFont = False
     end
     object label_selecionar_produto: TLabel
-      Left = 8
+      Left = 13
       Top = 108
       Width = 54
       Height = 13
@@ -92,7 +94,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       ParentFont = False
     end
     object label_produto_quantidade: TLabel
-      Left = 7
+      Left = 12
       Top = 154
       Width = 68
       Height = 13
@@ -105,9 +107,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       ParentFont = False
     end
     object edit_pedido_usuario: TEdit
-      Left = 7
-      Top = 32
-      Width = 180
+      Left = 12
+      Top = 34
+      Width = 161
       Height = 21
       Enabled = False
       TabOrder = 0
@@ -132,24 +134,24 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       TabOrder = 2
     end
     object ComboBox1: TComboBox
-      Left = 7
+      Left = 12
       Top = 127
-      Width = 179
+      Width = 161
       Height = 21
       TabOrder = 4
       TextHint = 'Selecione um produto'
     end
     object edit_produto_quantidade: TEdit
-      Left = 7
+      Left = 12
       Top = 173
-      Width = 98
+      Width = 80
       Height = 21
       NumbersOnly = True
       TabOrder = 5
       TextHint = 'Ex: 10'
     end
     object btn_adicionar: TButton
-      Left = 111
+      Left = 98
       Top = 171
       Width = 75
       Height = 25
@@ -157,9 +159,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       TabOrder = 6
     end
     object btn_finalizar_: TBitBtn
-      Left = 8
-      Top = 296
-      Width = 179
+      Left = 12
+      Top = 415
+      Width = 161
       Height = 25
       Caption = '&FINALIZAR PEDIDO'
       Kind = bkOK
@@ -167,9 +169,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       TabOrder = 7
     end
     object btn_cancelar: TBitBtn
-      Left = 8
-      Top = 327
-      Width = 179
+      Left = 12
+      Top = 446
+      Width = 161
       Height = 25
       Caption = '&CANCELAR LAN'#199'AMENTO'
       Kind = bkNo
@@ -178,9 +180,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
     object db_combobox_cliente: TDBComboBox
       AlignWithMargins = True
-      Left = 7
-      Top = 80
-      Width = 179
+      Left = 12
+      Top = 81
+      Width = 161
       Height = 21
       Style = csDropDownList
       AutoDropDown = True
@@ -191,10 +193,10 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
   end
   object DBGrid1: TDBGrid
-    Left = 207
-    Top = 27
-    Width = 476
-    Height = 281
+    Left = 191
+    Top = 32
+    Width = 506
+    Height = 397
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -203,8 +205,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     TitleFont.Style = []
   end
   object panel_total_itens: TPanel
-    Left = 307
-    Top = 314
+    Left = 315
+    Top = 435
     Width = 185
     Height = 41
     TabOrder = 2
@@ -236,8 +238,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
   end
   object panel_total: TPanel
-    Left = 498
-    Top = 314
+    Left = 512
+    Top = 435
     Width = 185
     Height = 41
     TabOrder = 3

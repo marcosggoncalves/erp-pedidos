@@ -102,10 +102,6 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\modules\clientes\frm_cliente.pas">
-            <Form>Tfrm_cliente</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\modules\clientes\entity_cliente.pas"/>
         <DCCReference Include="src\modules\clientes\factory_cliente.pas"/>
         <DCCReference Include="src\modules\clientes\interface_cliente.pas"/>
@@ -118,33 +114,43 @@
         <DCCReference Include="src\modules\produtos\factory_produto.pas"/>
         <DCCReference Include="src\modules\produtos\interface_produto.pas"/>
         <DCCReference Include="src\modules\produtos\repository_produto.pas"/>
-        <DCCReference Include="src\modules\produtos\frm_produto.pas">
-            <Form>Tfrm_produto</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\utils\validation.pas"/>
         <DCCReference Include="src\utils\constants.pas"/>
         <DCCReference Include="src\modules\usuarios\entity_usuario.pas"/>
         <DCCReference Include="src\modules\usuarios\factory_usuario.pas"/>
-        <DCCReference Include="src\modules\usuarios\frm_usuario.pas">
-            <Form>Tfrm_usuario</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\modules\usuarios\interface_usuario.pas"/>
         <DCCReference Include="src\modules\usuarios\repository_usuario.pas"/>
-        <DCCReference Include="src\modules\home\frm_home.pas">
+        <DCCReference Include="src\forms\home\frm_home.pas">
             <Form>Tfrm_home</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\utils\mascara_cnpj_cpf.pas"/>
-        <DCCReference Include="src\modules\login\frm_login.pas">
+        <DCCReference Include="src\forms\login\frm_login.pas">
             <Form>Tfrm_login</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\common\sessao.pas">
             <Form>DataModule1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\forms\cliente\frm_cliente.pas">
+            <Form>Tfrm_cliente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\usuario\frm_usuario.pas">
+            <Form>Tfrm_usuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\pedido\frm_pedido.pas">
+            <Form>TFrm_lancar_pedido</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\pedido\frm_pedidos_vendas.pas">
+            <Form>Tfrm_pedidos_vendas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\produto\frm_produto.pas">
+            <Form>Tfrm_produto</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

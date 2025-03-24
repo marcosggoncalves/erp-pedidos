@@ -938,7 +938,8 @@ object Tfrm_home: TTfrm_home
     ShowHint = True
     Stretch = True
     Transparent = True
-    ExplicitTop = -6
+    ExplicitWidth = 612
+    ExplicitHeight = 408
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -960,11 +961,11 @@ object Tfrm_home: TTfrm_home
       end
       item
         Alignment = taCenter
-        Width = 200
+        Width = 250
       end
       item
         Alignment = taCenter
-        Width = 100
+        Width = 60
       end>
   end
   object MainMenu1: TMainMenu

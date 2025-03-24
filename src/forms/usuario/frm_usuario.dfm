@@ -25,14 +25,10 @@ object Tfrm_usuario: TTfrm_usuario
     ActivePage = aba_usuario_cadastro
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 695
-    ExplicitHeight = 474
     object aba_usuario_cadastro: TTabSheet
       Caption = 'Cadastro'
-      ExplicitWidth = 687
-      ExplicitHeight = 446
       object label_cadastro: TLabel
-        Left = 201
+        Left = 200
         Top = 11
         Width = 110
         Height = 13
@@ -103,10 +99,9 @@ object Tfrm_usuario: TTfrm_usuario
         Width = 185
         Height = 456
         Align = alLeft
-        Color = clMenu
+        Color = clBtnHighlight
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 446
         object titulo_aba_cadastro: TLabel
           Left = 12
           Top = 11
@@ -334,22 +329,20 @@ object Tfrm_usuario: TTfrm_usuario
     object aba_usuario_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitWidth = 687
-      ExplicitHeight = 446
       object Panel1: TPanel
         Left = 0
         Top = 0
         Width = 185
         Height = 456
         Align = alLeft
+        BevelOuter = bvNone
         BiDiMode = bdLeftToRight
-        Color = clMenu
+        Color = clBtnHighlight
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 446
         object aba_titulo_pesquisa: TLabel
-          Left = 12
+          Left = 11
           Top = 11
           Width = 44
           Height = 13
@@ -435,6 +428,7 @@ object Tfrm_usuario: TTfrm_usuario
           CharCase = ecUpperCase
           TabOrder = 1
           Text = 'PESQUISAR POR?'
+          OnChange = selecionar_filtro_usuario_change
           Items.Strings = (
             'USUARIO'
             'CPF')
@@ -448,6 +442,7 @@ object Tfrm_usuario: TTfrm_usuario
           Enabled = False
           TabOrder = 2
           TextHint = 'DIGITE SUA PESQUISA'
+          OnChange = edit_filtro_search_change
         end
         object btn_limpar_pesquisa: TBitBtn
           Left = 11

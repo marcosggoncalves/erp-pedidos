@@ -50,6 +50,7 @@ type
     procedure btn_pesquisar_click(Sender: TObject);
     procedure dbgridcell_selecionar(Column: TColumn);
     procedure selecionar_filtro_usuario_change(Sender: TObject);
+    procedure edit_filtro_search_change(Sender: TObject);
 
   private
     UsuarioRepository: TUsuarioRepository;
@@ -144,6 +145,14 @@ begin
 end;
 
 // Prodecures "ABA PESQUISA"
+procedure TTfrm_usuario.edit_filtro_search_change(Sender: TObject);
+begin
+  if selecionar_filtro_usuario.Text = 'CPF' then
+  begin
+     AplicarMascaraCPFCNPJ(edit_filtro_search, 'CPF');
+  end;
+end;
+
 procedure TTfrm_usuario.dbgridcell_selecionar(Column: TColumn);
 var
   source: TDataSet;

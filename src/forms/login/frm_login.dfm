@@ -4,7 +4,7 @@ object Tfrm_login: TTfrm_login
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Entrar'
-  ClientHeight = 201
+  ClientHeight = 218
   ClientWidth = 243
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -62,9 +62,9 @@ object Tfrm_login: TTfrm_login
     TextHint = 'Digite sua senha'
   end
   object btn_fechar: TBitBtn
-    Left = 77
-    Top = 156
-    Width = 75
+    Left = 144
+    Top = 172
+    Width = 89
     Height = 25
     Caption = 'Sair'
     Kind = bkCancel
@@ -73,9 +73,9 @@ object Tfrm_login: TTfrm_login
     OnClick = btn_fechar_click
   end
   object btn_entrar: TBitBtn
-    Left = 158
-    Top = 156
-    Width = 75
+    Left = 8
+    Top = 172
+    Width = 89
     Height = 25
     Caption = 'Entrar'
     Kind = bkOK
@@ -90,11 +90,13 @@ object Tfrm_login: TTfrm_login
     Height = 41
     Align = alTop
     Caption = 'ERP - PEDIDOS'
+    Color = clBtnHighlight
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
+    ParentBackground = False
     ParentFont = False
     TabOrder = 4
   end

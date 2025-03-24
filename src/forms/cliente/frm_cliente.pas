@@ -47,6 +47,7 @@ type
     procedure btn_limpar_pesquisa_click(Sender: TObject);
     procedure selecionar_tipo_filtro_change(Sender: TObject);
     procedure dbgridcell_selecionar(Column: TColumn);
+    procedure edit_filtro_search_change(Sender: TObject);
   private
     ClienteRepository: TClienteRepository;
   end;
@@ -138,6 +139,14 @@ begin
 end;
 
 // Prodecures "ABA PESQUISA"
+procedure TTfrm_cliente.edit_filtro_search_change(Sender: TObject);
+begin
+  if selecionar_filtro_cliente.Text = 'CPF_CNPJ' then
+  begin
+     AplicarMascaraCPFCNPJ(edit_filtro_search);
+  end;
+end;
+
 procedure TTfrm_cliente.btn_limpar_pesquisa_click(Sender: TObject);
 begin
   edit_filtro_search.Clear;
@@ -202,8 +211,7 @@ begin
 
     edit_id_cliente.Text := source.FieldByName('ID').AsString;
     edit_nome_cliente.Text := source.FieldByName('Nome').AsString;
-    edit_documento_cliente.Text :=
-      source.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString;
+    edit_documento_cliente.Text := source.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString;
 
     btn_excluir.Visible := true;
   end;

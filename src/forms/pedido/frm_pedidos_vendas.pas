@@ -20,6 +20,7 @@ type
     date_inicial: TDateTimePicker;
     date_final: TDateTimePicker;
     DBGrid1: TDBGrid;
+    BitBtn1: TBitBtn;
   private
     { Private declarations }
   public
