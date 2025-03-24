@@ -1,9 +1,10 @@
 object Tfrm_home: TTfrm_home
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'ERP - Pedidos'
-  ClientHeight = 486
-  ClientWidth = 704
+  ClientHeight = 496
+  ClientWidth = 714
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +21,8 @@ object Tfrm_home: TTfrm_home
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 704
-    Height = 467
+    Width = 714
+    Height = 477
     Align = alClient
     AutoSize = True
     ParentShowHint = False
@@ -942,8 +943,8 @@ object Tfrm_home: TTfrm_home
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 467
-    Width = 704
+    Top = 477
+    Width = 714
     Height = 19
     Panels = <
       item
@@ -966,6 +967,8 @@ object Tfrm_home: TTfrm_home
         Alignment = taCenter
         Width = 100
       end>
+    ExplicitTop = 467
+    ExplicitWidth = 704
   end
   object MainMenu1: TMainMenu
     Left = 16

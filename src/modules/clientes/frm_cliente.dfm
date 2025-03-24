@@ -1,6 +1,7 @@
 object Tfrm_cliente: TTfrm_cliente
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Clientes'
   ClientHeight = 484
@@ -312,10 +313,6 @@ object Tfrm_cliente: TTfrm_cliente
     object aba_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0

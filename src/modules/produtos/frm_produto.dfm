@@ -1,6 +1,7 @@
 object Tfrm_produto: TTfrm_produto
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Produtos'
   ClientHeight = 484

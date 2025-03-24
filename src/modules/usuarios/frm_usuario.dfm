@@ -1,9 +1,11 @@
 object Tfrm_usuario: TTfrm_usuario
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'Usu'#225'rios'
-  ClientHeight = 474
-  ClientWidth = 695
+  ClientHeight = 484
+  ClientWidth = 705
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,13 +20,17 @@ object Tfrm_usuario: TTfrm_usuario
   object abas_usuarios: TPageControl
     Left = 0
     Top = 0
-    Width = 695
-    Height = 474
+    Width = 705
+    Height = 484
     ActivePage = aba_usuario_cadastro
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 695
+    ExplicitHeight = 474
     object aba_usuario_cadastro: TTabSheet
       Caption = 'Cadastro'
+      ExplicitWidth = 687
+      ExplicitHeight = 446
       object label_cadastro: TLabel
         Left = 201
         Top = 11
@@ -95,11 +101,12 @@ object Tfrm_usuario: TTfrm_usuario
         Left = 0
         Top = 0
         Width = 185
-        Height = 446
+        Height = 456
         Align = alLeft
         Color = clMenu
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 446
         object titulo_aba_cadastro: TLabel
           Left = 12
           Top = 11
@@ -327,21 +334,20 @@ object Tfrm_usuario: TTfrm_usuario
     object aba_usuario_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitWidth = 687
+      ExplicitHeight = 446
       object Panel1: TPanel
         Left = 0
         Top = 0
         Width = 185
-        Height = 446
+        Height = 456
         Align = alLeft
         BiDiMode = bdLeftToRight
         Color = clMenu
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 446
         object aba_titulo_pesquisa: TLabel
           Left = 12
           Top = 11
@@ -501,8 +507,8 @@ object Tfrm_usuario: TTfrm_usuario
       object DBGrid1: TDBGrid
         Left = 185
         Top = 0
-        Width = 502
-        Height = 446
+        Width = 512
+        Height = 456
         Align = alClient
         DataSource = DataSource1
         TabOrder = 1
