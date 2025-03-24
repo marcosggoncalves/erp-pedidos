@@ -3,10 +3,11 @@ unit frm_produto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ExtCtrls, Vcl.Mask, Data.DB, Datasnap.DBClient, Vcl.Grids,
-  Vcl.DBGrids, validation_field, entity_produto, factory_produto, repository_produto,
+  Vcl.DBGrids, validation, entity_produto, factory_produto, repository_produto,
   System.Generics.Collections, constants;
 
 type
@@ -41,11 +42,11 @@ type
     DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
-    //Prodecures "ABA CADASTRO"
+    // Prodecures "ABA CADASTRO"
     procedure btn_salvar_click(Sender: TObject);
     procedure btn_limpar_cadastro_click(Sender: TObject);
     procedure btn_excluir_click(Sender: TObject);
-    //Prodecures "ABA PESQUISA"
+    // Prodecures "ABA PESQUISA"
     procedure btn_limpar_pesquisa_click(Sender: TObject);
     procedure btn_pesquisar_click(Sender: TObject);
     procedure dbgridcell_selecionar(Column: TColumn);
@@ -60,38 +61,28 @@ implementation
 
 {$R *.dfm}
 
-//Prodecures "ABA CADASTRO"
+// Prodecures "ABA CADASTRO"
 procedure TTfrm_produto.btn_limpar_cadastro_click(Sender: TObject);
 begin
-  LimparFields([edit_id_produto,edit_produto_nome, edit_produto_quantidade, edit_produto_valor]);
+  LimparFields([edit_id_produto, edit_produto_nome, edit_produto_quantidade,
+    edit_produto_valor]);
   btn_excluir.Visible := False;
 end;
 
 procedure TTfrm_produto.btn_excluir_click(Sender: TObject);
-var
-  ClienteId: Integer;
 begin
-  if edit_id_produto.Text = '' then
+  if MessageDlg('Deseja excluir cadastro do produto?', mtInformation,
+    [mbOK, mbCancel], 0) = mrOk then
   begin
-    ShowMessage(constants.MsgSelecioneExcluir);
-    Exit;
+    if ProdutoRepository.Remover(StrToIntDef(edit_id_produto.Text, 0)) then
+    begin
+      ShowMessage(constants.MsgExcluidoSucesso);
+
+      btn_limpar_cadastro_click(self);
+    end
+    else
+      ShowMessage(constants.MsgErroExcluir);
   end;
-
-  ClienteId := StrToIntDef(edit_id_produto.Text, 0);
-  if ClienteId = 0 then
-  begin
-    ShowMessage(constants.MsgIDInvalido);
-    Exit;
-  end;
-
-  if ProdutoRepository.Remover(ClienteId) then
-  begin
-    ShowMessage(constants.MsgExcluidoSucesso);
-
-    btn_limpar_cadastro_click(self);
-  end
-  else
-    ShowMessage(constants.MsgErroExcluir);
 end;
 
 procedure TTfrm_produto.btn_salvar_click(Sender: TObject);
@@ -103,29 +94,30 @@ var
 begin
   Id := 0;
 
-  if not ValidarFields([edit_produto_nome, edit_produto_quantidade, edit_produto_valor]) then
+  if not ValidarFields([edit_produto_nome, edit_produto_quantidade,
+    edit_produto_valor]) then
     Exit;
 
-  if edit_id_produto.Text <> '' then
-  begin
-    Id := StrToInt(edit_id_produto.Text);
-  end;
+  Id := StrToIntDef(edit_id_produto.Text, 0);
+  Valor := StrToCurrDef(edit_produto_valor.Text, 0);
+  Quantidade := StrToIntDef(edit_produto_quantidade.Text, 0);
 
-  Valor := StrToCurr(edit_produto_valor.Text);
-
-  Quantidade := StrToInt(edit_produto_quantidade.Text);
-
-  Produto := TProdutoFactory.CriarProduto(Id, edit_produto_nome.Text, Valor, Quantidade);
+  Produto := TProdutoFactory.CriarProduto(Id, edit_produto_nome.Text, Valor,
+    Quantidade);
 
   if edit_id_produto.Text <> '' then
   begin
     try
-      if ProdutoRepository.Atualizar(Produto) then
+      if MessageDlg('Deseja salvar alterações efetuadas?', mtConfirmation,
+        [mbOK, mbCancel], 0) = mrOk then
       begin
-         ShowMessage(constants.MsgAtualizadoSucesso);
-      end
-      else
-        ShowMessage(constants.MsgErroAtualizar);
+        if ProdutoRepository.Atualizar(Produto) then
+        begin
+          ShowMessage(constants.MsgAtualizadoSucesso);
+        end
+        else
+          ShowMessage(constants.MsgErroAtualizar);
+      end;
     finally
       Produto.Free;
 
@@ -139,7 +131,7 @@ begin
         ShowMessage(constants.MsgSalvoSucesso);
       end
       else
-         ShowMessage(constants.MsgErroSalvar);
+        ShowMessage(constants.MsgErroSalvar);
     finally
       Produto.Free;
 
@@ -147,18 +139,21 @@ begin
     end;
 end;
 
-//Prodecures "ABA PESQUISA"
+// Prodecures "ABA PESQUISA"
 procedure TTfrm_produto.dbgridcell_selecionar(Column: TColumn);
 var
   source: TDataSet;
 begin
-  abas_produtos.ActivePageIndex := 0;
-  source := DBGrid1.DataSource.DataSet;
+  if MessageDlg('Deseja editar o cadastro selecionado?',
+    mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
+  begin
+    abas_produtos.ActivePageIndex := 0;
+    source := DBGrid1.DataSource.DataSet;
 
-  edit_id_produto.Text := source.FieldByName('ID').AsString;
-  edit_produto_nome.Text := source.FieldByName('Nome').AsString;
-
-  btn_excluir.Visible := true;
+    edit_id_produto.Text := source.FieldByName('ID').AsString;
+    edit_produto_nome.Text := source.FieldByName('Nome').AsString;
+    btn_excluir.Visible := true;
+  end;
 end;
 
 procedure TTfrm_produto.btn_limpar_pesquisa_click(Sender: TObject);
@@ -196,7 +191,8 @@ begin
     DataSource1.DataSet := ClientDataSet1;
   finally
     ProdutoRepository.Free;
-    btn_produto_limpar_pq.Enabled := True;
+    btn_produto_limpar_pq.Enabled := true;
   end;
 end;
+
 end.

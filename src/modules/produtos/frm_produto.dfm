@@ -330,6 +330,10 @@ object Tfrm_produto: TTfrm_produto
     object aba_produto_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object titulo_filtro_nome: TLabel
         Left = 12
         Top = 57

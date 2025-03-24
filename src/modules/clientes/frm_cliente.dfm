@@ -28,10 +28,8 @@ object Tfrm_cliente: TTfrm_cliente
     ActivePage = aba_cadastro
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 656
     object aba_cadastro: TTabSheet
       Caption = 'Cadastro'
-      ExplicitWidth = 648
       object label_cadastro: TLabel
         Left = 201
         Top = 11
@@ -278,6 +276,7 @@ object Tfrm_cliente: TTfrm_cliente
         CharCase = ecUpperCase
         TabOrder = 1
         TextHint = 'Digite o documento informado'
+        OnChange = edit_cliente_cpf_cnpj_mascara
       end
       object edit_id_cliente: TEdit
         Left = 200
@@ -313,7 +312,10 @@ object Tfrm_cliente: TTfrm_cliente
     object aba_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitWidth = 648
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -325,13 +327,12 @@ object Tfrm_cliente: TTfrm_cliente
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
-        OnClick = combobox_filtro_cliente_change
         object aba_titulo_pesquisa: TLabel
           Left = 12
           Top = 11
-          Width = 82
+          Width = 44
           Height = 13
-          Caption = 'Op'#231#245'es Filtros:'
+          Caption = 'Op'#231#245'es:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -405,7 +406,7 @@ object Tfrm_cliente: TTfrm_cliente
           TabOrder = 0
           OnClick = btn_pesquisar_click
         end
-        object ComboBox_filtro_cliente: TComboBox
+        object selecionar_filtro_cliente: TComboBox
           Left = 11
           Top = 30
           Width = 161
@@ -413,7 +414,7 @@ object Tfrm_cliente: TTfrm_cliente
           CharCase = ecUpperCase
           TabOrder = 1
           Text = 'PESQUISAR POR?'
-          OnSelect = combobox_filtro_cliente_change
+          OnSelect = selecionar_tipo_filtro_change
           Items.Strings = (
             'NOME'
             'CPF_CNPJ')

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics, System.Generics.Collections,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, Vcl.Buttons, repository_cliente, entity_cliente,
-  factory_cliente, validation_field, constants,
+  factory_cliente, validation, constants, mascara_cnpj_cpf,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, Vcl.DBCtrls;
 
 type
@@ -34,21 +34,21 @@ type
     ClientDataSet1: TClientDataSet;
     DBGrid1: TDBGrid;
     DataSource1: TDataSource;
-    ComboBox_filtro_cliente: TComboBox;
+    selecionar_filtro_cliente: TComboBox;
     edit_filtro_search: TEdit;
     btn_limpar_pesquisa: TBitBtn;
-    //Prodecures "ABA CADASTRO"
+    // Prodecures "ABA CADASTRO"
     procedure btn_limpar_cadastro(Sender: TObject);
     procedure btn_salvar_click(Sender: TObject);
     procedure btn_excluir_click(Sender: TObject);
-    //Prodecures "ABA PESQUISA"
+    procedure edit_cliente_cpf_cnpj_mascara(Sender: TObject);
+    // Prodecures "ABA PESQUISA"
     procedure btn_pesquisar_click(Sender: TObject);
     procedure btn_limpar_pesquisa_click(Sender: TObject);
-    procedure combobox_filtro_cliente_change(Sender: TObject);
+    procedure selecionar_tipo_filtro_change(Sender: TObject);
     procedure dbgridcell_selecionar(Column: TColumn);
   private
     ClienteRepository: TClienteRepository;
-
   end;
 
 var
@@ -58,7 +58,7 @@ implementation
 
 {$R *.dfm}
 
-//Prodecures "ABA CADASTRO"
+// Prodecures "ABA CADASTRO"
 procedure TTfrm_cliente.btn_salvar_click(Sender: TObject);
 var
   Cliente: TCliente;
@@ -74,17 +74,22 @@ begin
     Id := StrToInt(edit_id_cliente.Text);
   end;
 
-  Cliente := TClienteFactory.CriarCliente(Id, edit_nome_cliente.Text, edit_documento_cliente.Text);
+  Cliente := TClienteFactory.CriarCliente(Id, edit_nome_cliente.Text,
+    edit_documento_cliente.Text);
 
   if edit_id_cliente.Text <> '' then
   begin
     try
-      if ClienteRepository.Atualizar(Cliente) then
+      if MessageDlg('Deseja salvar alterações efetuadas?', mtConfirmation,
+        [mbOK, mbCancel], 0) = mrOk then
       begin
-        ShowMessage(constants.MsgAtualizadoSucesso);
-      end
-      else
-        ShowMessage(constants.MsgErroAtualizar);
+        if ClienteRepository.Atualizar(Cliente) then
+        begin
+          ShowMessage(constants.MsgAtualizadoSucesso);
+        end
+        else
+          ShowMessage(constants.MsgErroAtualizar);
+      end;
     finally
       Cliente.Free;
 
@@ -95,7 +100,7 @@ begin
     try
       if ClienteRepository.Adicionar(Cliente) then
       begin
-       ShowMessage(constants.MsgSalvoSucesso);
+        ShowMessage(constants.MsgSalvoSucesso);
       end
       else
         ShowMessage(constants.MsgErroSalvar);
@@ -108,49 +113,42 @@ end;
 
 procedure TTfrm_cliente.btn_limpar_cadastro(Sender: TObject);
 begin
-  LimparFields([edit_id_cliente, edit_documento_cliente, edit_nome_cliente, edit_filtro_search ]);
+  LimparFields([edit_id_cliente, edit_documento_cliente, edit_nome_cliente,
+    edit_filtro_search]);
   btn_excluir.Visible := false;
 end;
 
 procedure TTfrm_cliente.btn_excluir_click(Sender: TObject);
-var
-  ClienteId: Integer;
 begin
-  if edit_id_cliente.Text = '' then
+  if MessageDlg('Deseja excluir cadastro do cliente?', mtInformation,
+    [mbOK, mbCancel], 0) = mrOk then
   begin
-    ShowMessage(constants.MsgSelecioneExcluir);
-    Exit;
+    if ClienteRepository.Remover(StrToIntDef(edit_id_cliente.Text, 0)) then
+    begin
+      ShowMessage(constants.MsgExcluidoSucesso);
+
+      btn_limpar_cadastro(self);
+    end
   end;
-
-  ClienteId := StrToIntDef(edit_id_cliente.Text, 0);
-  if ClienteId = 0 then
-  begin
-    ShowMessage(constants.MsgIDInvalido);
-    Exit;
-  end;
-
-  if ClienteRepository.Remover(ClienteId) then
-  begin
-    ShowMessage(constants.MsgExcluidoSucesso);
-
-    btn_limpar_cadastro(self);
-  end
-  else
-    ShowMessage(constants.MsgExcluidoSucesso);
 end;
 
-//Prodecures "ABA PESQUISA"
+procedure TTfrm_cliente.edit_cliente_cpf_cnpj_mascara(Sender: TObject);
+begin
+  AplicarMascaraCPFCNPJ(edit_documento_cliente);
+end;
+
+// Prodecures "ABA PESQUISA"
 procedure TTfrm_cliente.btn_limpar_pesquisa_click(Sender: TObject);
 begin
   edit_filtro_search.Clear;
-  btn_limpar_pesquisa.Enabled := False;
+  btn_limpar_pesquisa.Enabled := false;
   ClientDataSet1.Open;
   ClientDataSet1.EmptyDataSet;
 end;
 
-procedure TTfrm_cliente.combobox_filtro_cliente_change(Sender: TObject);
+procedure TTfrm_cliente.selecionar_tipo_filtro_change(Sender: TObject);
 begin
-  if ComboBox_filtro_cliente.Text <> '' then
+  if selecionar_filtro_cliente.Text <> '' then
   begin
     edit_filtro_search.Enabled := true;
     edit_filtro_search.Clear;
@@ -163,7 +161,8 @@ var
   Cliente: TCliente;
 begin
   try
-    Clientes := ClienteRepository.ListarTodos(ComboBox_filtro_cliente.Text, edit_filtro_search.Text);
+    Clientes := ClienteRepository.ListarTodos(selecionar_filtro_cliente.Text,
+      edit_filtro_search.Text);
 
     ClientDataSet1.Close;
     ClientDataSet1.FieldDefs.Clear;
@@ -178,7 +177,8 @@ begin
       ClientDataSet1.Append;
       ClientDataSet1.FieldByName('ID').AsInteger := Cliente.Id;
       ClientDataSet1.FieldByName('Nome').AsString := Cliente.Nome;
-      ClientDataSet1.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString := Cliente.CpfCnpj;
+      ClientDataSet1.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString :=
+        Cliente.CpfCnpj;
       ClientDataSet1.Post;
     end;
 
@@ -186,21 +186,27 @@ begin
   finally
     ClienteRepository.Free;
 
-    btn_limpar_pesquisa.Enabled := True;
+    btn_limpar_pesquisa.Enabled := true;
   end;
 end;
 
 procedure TTfrm_cliente.dbgridcell_selecionar(Column: TColumn);
 var
   source: TDataSet;
+begin
+  if MessageDlg('Deseja editar o cadastro selecionado?', mtConfirmation,
+    [mbOK, mbCancel], 0) = mrOk then
   begin
     abas_navegacao.ActivePageIndex := 0;
     source := DBGrid1.DataSource.DataSet;
 
     edit_id_cliente.Text := source.FieldByName('ID').AsString;
-    edit_nome_cliente.Text := source.FieldByName('nome').AsString;
-    edit_documento_cliente.Text := source.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString;
+    edit_nome_cliente.Text := source.FieldByName('Nome').AsString;
+    edit_documento_cliente.Text :=
+      source.FieldByName('DOCUMENTO(CPF/CNPJ)').AsString;
 
     btn_excluir.Visible := true;
   end;
+end;
+
 end.

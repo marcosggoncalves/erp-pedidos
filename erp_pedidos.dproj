@@ -114,10 +114,6 @@
             <Form>dm</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\modules\home\frm_home.pas">
-            <Form>Tfrm_home</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="src\modules\produtos\entity_produto.pas"/>
         <DCCReference Include="src\modules\produtos\factory_produto.pas"/>
         <DCCReference Include="src\modules\produtos\interface_produto.pas"/>
@@ -126,6 +122,21 @@
             <Form>Tfrm_produto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\utils\validation.pas"/>
+        <DCCReference Include="src\utils\constants.pas"/>
+        <DCCReference Include="src\modules\usuarios\entity_usuario.pas"/>
+        <DCCReference Include="src\modules\usuarios\factory_usuario.pas"/>
+        <DCCReference Include="src\modules\usuarios\frm_usuario.pas">
+            <Form>Tfrm_usuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\modules\usuarios\interface_usuario.pas"/>
+        <DCCReference Include="src\modules\usuarios\repository_usuario.pas"/>
+        <DCCReference Include="src\modules\home\frm_home.pas">
+            <Form>Tfrm_home</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\utils\mascara_cnpj_cpf.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

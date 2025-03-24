@@ -960,12 +960,13 @@ object Tfrm_home: TTfrm_home
       end>
   end
   object MainMenu1: TMainMenu
-    Left = 8
+    Left = 16
     Top = 8
     object Cadastro1: TMenuItem
       Caption = 'Cadastros'
       object Usuarios1: TMenuItem
         Caption = 'Usuarios'
+        OnClick = Usuarios1Click
       end
       object Produtos1: TMenuItem
         Caption = 'Produtos'
@@ -989,6 +990,7 @@ object Tfrm_home: TTfrm_home
       Caption = 'Sistema'
       object FinalizarSistema1: TMenuItem
         Caption = 'Finalizar sess'#227'o'
+        OnClick = FinalizarSistema1Click
       end
     end
   end
