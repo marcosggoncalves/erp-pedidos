@@ -90,7 +90,7 @@ object Tfrm_login: TTfrm_login
     Height = 41
     Align = alTop
     Caption = 'ERP - PEDIDOS'
-    Color = clBtnHighlight
+    Color = clMenuBar
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

@@ -6,7 +6,7 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
   Caption = 'Pedidos '
   ClientHeight = 484
   ClientWidth = 705
-  Color = clBtnFace
+  Color = clMenuBar
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -38,7 +38,7 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
         Align = alLeft
         BevelOuter = bvNone
         BiDiMode = bdLeftToRight
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0

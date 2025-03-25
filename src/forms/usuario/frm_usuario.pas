@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient,
   System.Generics.Collections,
   constants, entity_usuario, factory_usuario, repository_usuario, validation,
-  mascara_cnpj_cpf;
+  mascaras;
 
 type
   TTfrm_usuario = class(TForm)

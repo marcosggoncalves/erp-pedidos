@@ -4,11 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  System.Classes, Vcl.Graphics,  System.UITypes,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ExtCtrls, Vcl.Mask, Data.DB, Datasnap.DBClient, Vcl.Grids,
   Vcl.DBGrids, validation, entity_produto, factory_produto, repository_produto,
-  System.Generics.Collections, constants;
+  System.Generics.Collections, constants, mascaras, Vcl.DBCtrls;
 
 type
   TTfrm_produto = class(TForm)
@@ -28,7 +28,6 @@ type
     label_produto_valor: TLabel;
     label_produto_quantidade: TLabel;
     edit_produto_quantidade: TEdit;
-    edit_produto_valor: TMaskEdit;
     edit_filtro_search: TEdit;
     titulo_filtro_nome: TLabel;
     btn_pesquisar: TBitBtn;
@@ -42,6 +41,7 @@ type
     DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
+    edit_produto_valor: TEdit;
     // Prodecures "ABA CADASTRO"
     procedure btn_salvar_click(Sender: TObject);
     procedure btn_limpar_cadastro_click(Sender: TObject);
@@ -92,8 +92,6 @@ var
   Valor: Currency;
   Quantidade: Integer;
 begin
-  Id := 0;
-
   if not ValidarFields([edit_produto_nome, edit_produto_quantidade,
     edit_produto_valor]) then
     Exit;
@@ -152,6 +150,9 @@ begin
 
     edit_id_produto.Text := source.FieldByName('ID').AsString;
     edit_produto_nome.Text := source.FieldByName('Nome').AsString;
+    edit_produto_quantidade.Text := source.FieldByName('Quantidade Estoque').AsString;
+    edit_produto_valor.Text := source.FieldByName('Valor Unitário').AsString;
+
     btn_excluir.Visible := true;
   end;
 end;
@@ -177,14 +178,18 @@ begin
     ClientDataSet1.FieldDefs.Clear;
 
     ClientDataSet1.FieldDefs.Add('ID', ftInteger);
+    ClientDataSet1.FieldDefs.Add('Quantidade Estoque', ftInteger);
     ClientDataSet1.FieldDefs.Add('Nome', ftString, 30);
+    ClientDataSet1.FieldDefs.Add('Valor Unitário', ftCurrency);
     ClientDataSet1.CreateDataSet;
 
     for Produto in Produtos do
     begin
       ClientDataSet1.Append;
       ClientDataSet1.FieldByName('ID').AsInteger := Produto.Id;
+      ClientDataSet1.FieldByName('Quantidade Estoque').AsInteger := Produto.QuantidadeEstoque;
       ClientDataSet1.FieldByName('Nome').AsString := Produto.Nome;
+      ClientDataSet1.FieldByName('Valor Unitário').AsCurrency := Produto.PrecoUnit;
       ClientDataSet1.Post;
     end;
 

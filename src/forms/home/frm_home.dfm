@@ -5,7 +5,7 @@ object Tfrm_home: TTfrm_home
   Caption = 'ERP - Pedidos'
   ClientHeight = 496
   ClientWidth = 714
-  Color = clBtnFace
+  Color = clMenu
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -989,11 +989,11 @@ object Tfrm_home: TTfrm_home
     object Pedidos1: TMenuItem
       Caption = 'Pedidos'
       object NovoPedido1: TMenuItem
-        Caption = 'Pedidos'
+        Caption = 'Lan'#231'amentos'
         OnClick = NovoPedido1Click
       end
       object NovoPedido2: TMenuItem
-        Caption = 'Lan'#231'ar novo pedido'
+        Caption = 'Novo Pedido'
         OnClick = NovoPedido2Click
       end
     end
@@ -1007,7 +1007,7 @@ object Tfrm_home: TTfrm_home
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 8
+    Left = 16
     Top = 72
   end
 end

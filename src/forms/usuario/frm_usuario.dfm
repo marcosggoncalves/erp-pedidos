@@ -6,7 +6,7 @@ object Tfrm_usuario: TTfrm_usuario
   Caption = 'Usu'#225'rios'
   ClientHeight = 484
   ClientWidth = 705
-  Color = clBtnFace
+  Color = clMenuBar
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -99,7 +99,7 @@ object Tfrm_usuario: TTfrm_usuario
         Width = 185
         Height = 456
         Align = alLeft
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBackground = False
         TabOrder = 0
         object titulo_aba_cadastro: TLabel
@@ -337,7 +337,7 @@ object Tfrm_usuario: TTfrm_usuario
         Align = alLeft
         BevelOuter = bvNone
         BiDiMode = bdLeftToRight
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
@@ -368,9 +368,9 @@ object Tfrm_usuario: TTfrm_usuario
           ParentFont = False
         end
         object btn_usuario_pesquisar: TBitBtn
-          Left = 12
+          Left = 11
           Top = 108
-          Width = 161
+          Width = 162
           Height = 25
           Caption = 'Pesquisar'
           Glyph.Data = {
@@ -434,7 +434,7 @@ object Tfrm_usuario: TTfrm_usuario
             'CPF')
         end
         object edit_filtro_search: TEdit
-          Left = 12
+          Left = 11
           Top = 76
           Width = 161
           Height = 21

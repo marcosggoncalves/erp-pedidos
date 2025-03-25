@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics, System.Generics.Collections,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, Vcl.Buttons, repository_cliente, entity_cliente,
-  factory_cliente, validation, constants, mascara_cnpj_cpf,
+  factory_cliente, validation, constants, mascaras,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, Vcl.DBCtrls;
 
 type

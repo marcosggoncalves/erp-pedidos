@@ -101,7 +101,7 @@ object Tfrm_produto: TTfrm_produto
         Width = 185
         Height = 456
         Align = alLeft
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBackground = False
         TabOrder = 0
         object titulo_aba_cadastro: TLabel
@@ -318,13 +318,12 @@ object Tfrm_produto: TTfrm_produto
         TabOrder = 3
         TextHint = 'Informe uma quantidade'
       end
-      object edit_produto_valor: TMaskEdit
-        Left = 201
+      object edit_produto_valor: TEdit
+        Left = 200
         Top = 95
         Width = 201
         Height = 21
         TabOrder = 4
-        Text = ''
         TextHint = 'Informe o valor do produto  '
       end
     end
@@ -479,13 +478,13 @@ object Tfrm_produto: TTfrm_produto
         Align = alLeft
         BevelOuter = bvNone
         BiDiMode = bdLeftToRight
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 3
         object label_produto_pesquisar: TLabel
           Left = 11
-          Top = 0
+          Top = 9
           Width = 106
           Height = 13
           Caption = 'Pesquisar produto:'
@@ -497,8 +496,8 @@ object Tfrm_produto: TTfrm_produto
           ParentFont = False
         end
         object btn_produto_pesquisar: TBitBtn
-          Left = 12
-          Top = 60
+          Left = 11
+          Top = 65
           Width = 161
           Height = 25
           Caption = 'Pesquisar'
@@ -550,17 +549,16 @@ object Tfrm_produto: TTfrm_produto
           OnClick = btn_pesquisar_click
         end
         object edit_produto_pesquisa: TEdit
-          Left = 12
-          Top = 28
+          Left = 11
+          Top = 38
           Width = 161
           Height = 21
-          CharCase = ecUpperCase
           TabOrder = 1
           TextHint = 'DIGITE SUA PESQUISA'
         end
         object btn_produto_limpar_pq: TBitBtn
           Left = 11
-          Top = 91
+          Top = 96
           Width = 161
           Height = 25
           Caption = 'Limpar'

@@ -90,7 +90,7 @@ object Tfrm_cliente: TTfrm_cliente
         Width = 185
         Height = 456
         Align = alLeft
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBackground = False
         TabOrder = 0
         object titulo_aba_cadastro: TLabel
@@ -321,12 +321,12 @@ object Tfrm_cliente: TTfrm_cliente
         Align = alLeft
         BevelOuter = bvNone
         BiDiMode = bdLeftToRight
-        Color = clBtnHighlight
+        Color = clMenuBar
         ParentBiDiMode = False
         ParentBackground = False
         TabOrder = 0
         object aba_titulo_pesquisa: TLabel
-          Left = 12
+          Left = 11
           Top = 11
           Width = 44
           Height = 13

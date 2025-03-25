@@ -37,10 +37,3 @@ CREATE TABLE pedido_produto (
   FOREIGN KEY (pedido_id) REFERENCES pedido (id),
   FOREIGN KEY (produto_id) REFERENCES produto (id)
 );
-
-INSERT INTO USUARIO (CPF, USUARIO, SENHA)
-VALUES (
-    '069.389.071-10', 
-    'MARCOS GONÇALVES', 
-    '1234'
-);

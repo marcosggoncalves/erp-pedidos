@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  validation, mascara_cnpj_cpf, repository_usuario, entity_usuario,
+  validation, mascaras, repository_usuario, entity_usuario,
   factory_usuario, constants, frm_home;
 
 type

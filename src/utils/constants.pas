@@ -12,6 +12,10 @@ const
   MsgErroSalvar = 'Erro ao salvar cadastro!';
   MsgIDInvalido = 'ID inválido!';
   MsgLoginInvalido = 'CPF/Senha inválido!';
+  MsgRemoverItem = 'Você tem certeza que deseja remover item?';
+  MsgCampoVazioCliente = 'Selecione um cliente para continuar.';
+  MsgCampoVazioProduto = 'Selecione um produto para continuar.';
+  MsgCampoVazioQuantidade = 'Informe uma quantidade do produto.';
 
 implementation
 
