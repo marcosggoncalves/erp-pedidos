@@ -51,7 +51,7 @@ type
     procedure dbgrid_remover_item_click(Column: TColumn);
     procedure btn_finalizar_click(Sender: TObject);
     procedure mostrar_calculo_panel(Sender: TObject);
-    procedure btn_limpar_click(Sender:TObject);
+    procedure btn_limpar_click(Sender: TObject);
 
     function calcularTotalPedido: Currency;
   private
@@ -69,8 +69,7 @@ implementation
 
 {$R *.dfm}
 
-uses entity_pedido, entity_pedido_produto, factory_pedido,
-  factory_produto_pedido;
+uses entity_pedido, entity_pedido_produto, factory_pedido, factory_produto_pedido;
 
 function TTFrm_lancar_pedido.calcularTotalPedido: Currency;
 var
@@ -147,9 +146,11 @@ begin
     begin
       ClientSetProduto.Append;
       ClientSetProduto.FieldByName('ID').AsInteger := Produto.Id;
-      ClientSetProduto.FieldByName('QuantidadeEstoque').AsInteger := Produto.QuantidadeEstoque;
+      ClientSetProduto.FieldByName('QuantidadeEstoque').AsInteger :=
+        Produto.QuantidadeEstoque;
       ClientSetProduto.FieldByName('Nome').AsString := Produto.Nome;
-      ClientSetProduto.FieldByName('ValorUnitario').AsCurrency := Produto.PrecoUnit;
+      ClientSetProduto.FieldByName('ValorUnitario').AsCurrency :=
+        Produto.PrecoUnit;
       ClientSetProduto.Post;
     end;
 
@@ -210,9 +211,11 @@ begin
 
   Id := combo_produtos.ListSource.DataSet.FieldByName('ID').AsInteger;
   Produto := combo_produtos.ListSource.DataSet.FieldByName('Nome').AsString;
-  Valor := combo_produtos.ListSource.DataSet.FieldByName('ValorUnitario').AsCurrency;
+  Valor := combo_produtos.ListSource.DataSet.FieldByName('ValorUnitario')
+    .AsCurrency;
   Quantidade := StrToIntDef(edit_produto_quantidade.Text, 1);
   IsAdicionado := False;
+
   // Inicia o dataset de pedidos
   if not ClientSetPedido.Active then
   begin
@@ -234,8 +237,10 @@ begin
       begin
         IsAdicionado := True;
         ClientSetPedido.Edit;
-        ClientSetPedido.FieldByName('Quantidade').AsInteger := ClientSetPedido.FieldByName('Quantidade').AsInteger + Quantidade;
-        ClientSetPedido.FieldByName('SubTotal').AsCurrency := ClientSetPedido.FieldByName('Quantidade').AsInteger * Valor;
+        ClientSetPedido.FieldByName('Quantidade').AsInteger :=
+          ClientSetPedido.FieldByName('Quantidade').AsInteger + Quantidade;
+        ClientSetPedido.FieldByName('SubTotal').AsCurrency :=
+          ClientSetPedido.FieldByName('Quantidade').AsInteger * Valor;
         ClientSetPedido.Post;
         Break;
       end;
@@ -256,10 +261,10 @@ begin
     ClientSetPedido.Post;
   end;
   // Habilitar botão para finalizar
-  if not btn_finalizar_.Enabled   then
+  if not btn_finalizar_.Enabled then
   begin
-     btn_finalizar_.Enabled := True;
-     btn_cancelar_.Enabled := True;
+    btn_finalizar_.Enabled := True;
+    btn_cancelar_.Enabled := True;
   end;
   // Atualiza as informações de total
   mostrar_calculo_panel(self);
@@ -295,7 +300,7 @@ begin
         ClientSetPedido.EnableControls;
       end;
 
-      // Atualiza as informações de total
+      // Atualiza totalizadores em tela, panel
       mostrar_calculo_panel(self);
     end;
   end;
@@ -315,16 +320,26 @@ begin
       ShowMessage(MsgCampoVazioCliente);
       exit;
     end;
-
     PedidoRepository := TPedidoRepository.Create;
+
+     // Verificar estoques dos produtos antes de realizar pedido
+    ClientSetPedido.First;
+    while not ClientSetPedido.Eof do
+    begin
+      try
+        if not ProdutoRepository.AlterarEstoque(ClientSetPedido.FieldByName('ID').AsInteger,ClientSetPedido.FieldByName('Quantidade').AsInteger) then
+        begin
+          ShowMessage(MsgEstoqueInsuficiente + ClientSetPedido.FieldByName('Produto').AsString);
+          exit;
+        end;
+      finally
+        ProdutoRepository.Free;
+      end;
+      ClientSetPedido.Next;
+    end;
+
     try
-      Pedido := TPedidoFactory.CriarPedido(
-        0,
-        combo_clientes.KeyValue,
-        DataModule1.logado.Id,
-        Now,
-        calcularTotalPedido
-      );
+      Pedido := TPedidoFactory.CriarPedido(0, combo_clientes.KeyValue, DataModule1.logado.Id, Now, calcularTotalPedido);
 
       try
         Pedido.Id := PedidoRepository.AbrirPedido(Pedido);
@@ -334,13 +349,12 @@ begin
         begin
           PedidoProduto := TPedidoProduto.Create;
           try
-            PedidoProduto := TPedidoProdutoFactory.CriarPedidoProduto(
-              0,
-              Pedido.Id, ClientSetPedido.FieldByName('ID').AsInteger,
-              ClientSetPedido.FieldByName('Quantidade').AsInteger
-            );
-
-            PedidoRepository.InserirProdutoNoPedido(PedidoProduto);
+            PedidoProduto := TPedidoProdutoFactory.CriarPedidoProduto(0,Pedido.Id, ClientSetPedido.FieldByName('ID').AsInteger,ClientSetPedido.FieldByName('Quantidade').AsInteger);
+            // Verificar estoque do produto e realizar baixa na quantidade atual
+            if ProdutoRepository.AlterarEstoque(PedidoProduto.ProdutoId, PedidoProduto.Quantidade, True) then
+            begin
+              PedidoRepository.InserirProdutoNoPedido(PedidoProduto);
+            end;
           finally
             PedidoProduto.Free;
           end;
@@ -350,11 +364,11 @@ begin
         ShowMessage(MsgPedidoFInalizado);
       finally
         Pedido.Free;
-        btn_limpar_click(Self);
+        btn_limpar_click(self);
       end;
     except
       on E: Exception do
-        ShowMessage('Erro: ' + E.Message);
+        ShowMessage('AVISO:' + E.Message);
     end;
 
     PedidoRepository.Free;

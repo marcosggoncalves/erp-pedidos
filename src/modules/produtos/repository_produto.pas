@@ -16,11 +16,14 @@ type
     constructor Create;
     function Adicionar(AProduto: TProduto): Boolean;
     function Atualizar(AProduto: TProduto): Boolean;
+    function AlterarEstoque(AId: Integer; AQuantidadeDescontar: Integer; Descontar: Boolean = False): Boolean;
     function Remover(AId: Integer): Boolean;
     function ListarTodos(search: String = ''): TList<TProduto>;
   end;
 
 implementation
+
+uses constants;
 
 constructor TProdutoRepository.Create;
 begin
@@ -52,6 +55,60 @@ begin
     except
       on E: Exception do
         raise Exception.Create('Erro ao adicionar produto: ' + E.Message);
+    end;
+  finally
+    Qry.Free;
+  end;
+end;
+
+function TProdutoRepository.AlterarEstoque(AId: Integer; AQuantidadeDescontar: Integer; Descontar: Boolean = False): Boolean;
+var
+  Qry: TFDQuery;
+  CurrentStock: Integer;
+  Nome: String;
+begin
+  Result := False;
+  Qry := CriarQuery;
+  try
+    Qry.SQL.Text := 'SELECT nome, quantidade_estoque FROM produto WHERE id = :id';
+    Qry.ParamByName('id').AsInteger := AId;
+    Qry.Open;
+
+    if Qry.Eof then
+    begin
+      raise Exception.Create(MsgProdutoNaoEcontrado);
+    end;
+
+    Nome := Qry.FieldByName('nome').AsString;
+    CurrentStock := Qry.FieldByName('quantidade_estoque').AsInteger;
+
+    if not Descontar then
+    begin
+      Result := CurrentStock >= AQuantidadeDescontar;
+      Exit;
+    end;
+
+    if CurrentStock >= AQuantidadeDescontar then
+    begin
+      Qry.Close;
+      Qry.SQL.Text := 'UPDATE produto ' +
+                      'SET quantidade_estoque = quantidade_estoque - :quantidade_estoque ' +
+                      'WHERE id = :id';
+
+      Qry.ParamByName('quantidade_estoque').AsInteger := AQuantidadeDescontar;
+      Qry.ParamByName('id').AsInteger := AId;
+
+      try
+        Qry.ExecSQL;
+        Result := Qry.RowsAffected > 0;
+      except
+        on E: Exception do
+          raise Exception.Create('Erro ao atualizar quantidade do produto "' + Nome + '": ' + E.Message);
+      end;
+    end
+    else
+    begin
+      raise Exception.Create(MsgEstoqueInsuficiente + Nome);
     end;
   finally
     Qry.Free;

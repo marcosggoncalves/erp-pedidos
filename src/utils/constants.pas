@@ -18,6 +18,8 @@ const
   MsgCampoVazioQuantidade = 'Informe uma quantidade do produto.';
   MsgFinalizarPedido = 'Deseja finalizar pedido?';
   MsgPedidoFInalizado =  'Pedido finalizado com sucesso!';
+  MsgEstoqueInsuficiente = 'Estoque insuficiente para o produto: ';
+  MsgProdutoNaoEcontrado = 'Produto não encontrado no estoque.';
 
 implementation
 
