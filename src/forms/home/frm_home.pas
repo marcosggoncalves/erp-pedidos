@@ -130,6 +130,7 @@ end;
 procedure TTfrm_home.Vendasporcliente1Click(Sender: TObject);
 begin
   // Abrir relatório vendas por cliente
+  dm.QryVendasRelatorio.Refresh;
   dm.RelatorioVendas.ShowReport();
 end;
 

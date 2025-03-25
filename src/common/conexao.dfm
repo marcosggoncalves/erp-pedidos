@@ -87,7 +87,7 @@ object dm: Tdm
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
-      Frame.Typ = []
+      Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
       MirrorMode = []
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
@@ -112,7 +112,7 @@ object dm: Tdm
           Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
-            'RELAT'#211'RIO DE VENDAS POR CLIENTE GERAL')
+            'RELAT'#211'RIO DE VENDAS POR CLIENTE')
           ParentFont = False
         end
       end
@@ -219,8 +219,8 @@ object dm: Tdm
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
+          Font.Name = '@Malgun Gothic'
+          Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
@@ -240,8 +240,8 @@ object dm: Tdm
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
+          Font.Name = '@Malgun Gothic'
+          Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
@@ -262,8 +262,8 @@ object dm: Tdm
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
+          Font.Name = '@Malgun Gothic'
+          Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
@@ -282,7 +282,7 @@ object dm: Tdm
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
-          Font.Name = 'Arial'
+          Font.Name = '@Malgun Gothic'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
