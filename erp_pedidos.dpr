@@ -25,7 +25,13 @@ uses
   frm_pedido in 'src\forms\pedido\frm_pedido.pas' {TFrm_lancar_pedido},
   frm_pedidos_vendas in 'src\forms\pedido\frm_pedidos_vendas.pas' {Tfrm_pedidos_vendas},
   frm_produto in 'src\forms\produto\frm_produto.pas' {Tfrm_produto},
-  mascaras in 'src\utils\mascaras.pas';
+  mascaras in 'src\utils\mascaras.pas',
+  entity_pedido in 'src\modules\pedidos\entity_pedido.pas',
+  entity_pedido_produto in 'src\modules\pedidos\entity_pedido_produto.pas',
+  factory_pedido in 'src\modules\pedidos\factory_pedido.pas',
+  factory_produto_pedido in 'src\modules\pedidos\factory_produto_pedido.pas',
+  interface_pedido in 'src\modules\pedidos\interface_pedido.pas',
+  repository_pedido in 'src\modules\pedidos\repository_pedido.pas';
 
 {$R *.res}
 

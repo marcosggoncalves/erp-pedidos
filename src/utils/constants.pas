@@ -16,6 +16,8 @@ const
   MsgCampoVazioCliente = 'Selecione um cliente para continuar.';
   MsgCampoVazioProduto = 'Selecione um produto para continuar.';
   MsgCampoVazioQuantidade = 'Informe uma quantidade do produto.';
+  MsgFinalizarPedido = 'Deseja finalizar pedido?';
+  MsgPedidoFInalizado =  'Pedido finalizado com sucesso!';
 
 implementation
 
