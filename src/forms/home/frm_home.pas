@@ -23,6 +23,8 @@ type
     StatusBar1: TStatusBar;
     Timer1: TTimer;
     Image1: TImage;
+    Relatrios1: TMenuItem;
+    Vendasporcliente1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
@@ -30,6 +32,7 @@ type
     procedure Usuarios1Click(Sender: TObject);
     procedure NovoPedido2Click(Sender: TObject);
     procedure NovoPedido1Click(Sender: TObject);
+    procedure Vendasporcliente1Click(Sender: TObject);
   end;
 
 var
@@ -38,6 +41,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses conexao;
 
 procedure TTfrm_home.Clientes1Click(Sender: TObject);
 var
@@ -120,6 +125,12 @@ begin
     FrmUsuario.Free;
     FrmUsuario := nil;
   end;
+end;
+
+procedure TTfrm_home.Vendasporcliente1Click(Sender: TObject);
+begin
+  // Abrir relatório vendas por cliente
+  dm.RelatorioVendas.ShowReport();
 end;
 
 end.

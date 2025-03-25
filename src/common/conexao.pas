@@ -8,7 +8,8 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase;
+  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase, frxClass,
+  frxExportBaseDialog, frxExportPDF, frxDBSet;
 
 type
   Tdm = class(TDataModule)
@@ -16,6 +17,11 @@ type
     FDTransaction: TFDTransaction;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    QryVendasRelatorio: TFDQuery;
+    VendasRelatorio: TDataSource;
+    RelatorioVendas: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    frxPDFExport1: TfrxPDFExport;
   private
     { Private declarations }
   public

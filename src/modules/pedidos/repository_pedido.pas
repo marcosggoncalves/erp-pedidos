@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, System.Generics.Collections,
   Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Param, Vcl.Dialogs, FireDAC.Stan.Def,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Stan.Option, FireDAC.UI.Intf,
-  FireDAC.VCLUI.Wait, entity_pedido, entity_pedido_produto, interface_pedido, conexao;
+  FireDAC.VCLUI.Wait, entity_pedido, entity_pedido_produto, entity_pedido_relatorio, interface_pedido, conexao;
 
 type
   TPedidoRepository = class(TInterfacedObject, IPedidoRepository)
@@ -16,7 +16,7 @@ type
     constructor Create;
     function AbrirPedido(Pedido: TPedido): Integer;
     function InserirProdutoNoPedido(PedidoProduto: TPedidoProduto): Boolean;
-    function ListarTodos(tipo: String = ''; search: String = ''): TList<TPedido>;
+    function ListarRelatorio(DataInicial : TDate = 0; DataFinal : TDate = 0) : TList<TPedidoRelatorio>;
   end;
 
 implementation
@@ -81,41 +81,43 @@ begin
   end;
 end;
 
-function TPedidoRepository.ListarTodos(tipo: String = ''; search: String = ''): TList<TPedido>;
+function TPedidoRepository.ListarRelatorio(DataInicial : TDate = 0; DataFinal : TDate =0): TList<TPedidoRelatorio>;
 var
   TQuerySQL: TFDQuery;
-  Pedido: TPedido;
+  Pedido: TPedidoRelatorio;
   SQLQuery: String;
 begin
-  Result := TList<TPedido>.Create;
+  Result := TList<TPedidoRelatorio>.Create;
   TQuerySQL := CriarQuery;
 
   try
-    SQLQuery := 'SELECT * FROM PEDIDO';
+     SQLQuery := 'SELECT C.NOME, SUM(P.TOTAL) AS VALOR_GASTO, COUNT(P.ID) AS QUANTIDADE_PEDIDOS ' +
+                'FROM PEDIDO P ' +
+                'INNER JOIN CLIENTE C ON C.ID = P.CLIENTE_ID';
 
-    if (tipo = 'CLIENTE') or (tipo = 'USUARIO') then
+    if (DataInicial <> 0) and (DataFinal <> 0) then
     begin
-      SQLQuery := SQLQuery + ' WHERE ' + tipo + ' LIKE :Tipo';
+      SQLQuery := SQLQuery + ' WHERE P.DATA_PEDIDO BETWEEN :DTINI AND :DTFINAL';
     end;
 
-    SQLQuery := SQLQuery + ' ORDER BY data_pedido DESC';
+    SQLQuery := SQLQuery + ' GROUP BY C.ID, C.NOME';
 
     TQuerySQL.SQL.Text := SQLQuery;
 
-    if (tipo = 'CLIENTE') or (tipo = 'USUARIO') then
+    if (DataInicial <> 0) and (DataFinal <> 0)  then
     begin
-      TQuerySQL.ParamByName('Tipo').AsString := '%' + search + '%';
+      TQuerySQL.ParamByName('DTINI').AsDate := DataInicial;
+      TQuerySQL.ParamByName('DTFINAL').AsDate := DataFinal;
     end;
 
     TQuerySQL.Open;
 
     while not TQuerySQL.Eof do
     begin
-      Pedido := TPedido.Create;
-      Pedido.Id := TQuerySQL.FieldByName('id').AsInteger;
-      Pedido.ClienteId := TQuerySQL.FieldByName('cliente_id').AsInteger;
-      Pedido.UsuarioId := TQuerySQL.FieldByName('usuario_id').AsInteger;
-      Pedido.DataPedido := TQuerySQL.FieldByName('data_pedido').AsDateTime;
+      Pedido := TPedidoRelatorio.Create;
+      Pedido.Nome := TQuerySQL.FieldByName('NOME').AsString;
+      Pedido.ValorGasto := TQuerySQL.FieldByName('VALOR_GASTO').AsCurrency;
+      Pedido.QuantidadePedidos := TQuerySQL.FieldByName('QUANTIDADE_PEDIDOS').AsInteger;
       Result.Add(Pedido);
       TQuerySQL.Next;
     end;

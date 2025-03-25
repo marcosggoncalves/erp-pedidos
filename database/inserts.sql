@@ -119,3 +119,4 @@ INSERT INTO pedido_produto (pedido_id, produto_id, quantidade) VALUES
     (10, 9, 3);
 INSERT INTO pedido_produto (pedido_id, produto_id, quantidade) VALUES
     (10, 10, 4);
+

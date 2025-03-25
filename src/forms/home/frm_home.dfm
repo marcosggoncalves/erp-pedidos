@@ -997,6 +997,13 @@ object Tfrm_home: TTfrm_home
         OnClick = NovoPedido2Click
       end
     end
+    object Relatrios1: TMenuItem
+      Caption = 'Relat'#243'rios'
+      object Vendasporcliente1: TMenuItem
+        Caption = 'Vendas por cliente'
+        OnClick = Vendasporcliente1Click
+      end
+    end
     object Sair1: TMenuItem
       Caption = 'Sistema'
       object FinalizarSistema1: TMenuItem
