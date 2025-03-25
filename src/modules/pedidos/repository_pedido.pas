@@ -14,8 +14,7 @@ type
     function CriarQuery: TFDQuery;
   public
     constructor Create;
-    function Adicionar(Pedido: TPedido): Integer;
-    function Remover(Id: Integer): Boolean;
+    function AbrirPedido(Pedido: TPedido): Integer;
     function InserirProdutoNoPedido(PedidoProduto: TPedidoProduto): Boolean;
     function ListarTodos(tipo: String = ''; search: String = ''): TList<TPedido>;
   end;
@@ -33,17 +32,18 @@ begin
   Result.Connection := conexao.dm.FDConexao;
 end;
 
-function TPedidoRepository.Adicionar(Pedido: TPedido): Integer;
+function TPedidoRepository.AbrirPedido(Pedido: TPedido): Integer;
 var
   TQuerySQL: TFDQuery;
 begin
   Result := 0;
   TQuerySQL := CriarQuery;
   try
-    TQuerySQL.SQL.Text := 'INSERT INTO PEDIDO (cliente_id, usuario_id, data_pedido) VALUES (:cliente_id, :usuario_id, :data_pedido)  RETURNING  id';
+    TQuerySQL.SQL.Text := 'INSERT INTO PEDIDO (cliente_id, usuario_id, data_pedido, total ) VALUES (:cliente_id, :usuario_id, :data_pedido, :total)  RETURNING  id';
     TQuerySQL.ParamByName('cliente_id').AsInteger := Pedido.ClienteId;
     TQuerySQL.ParamByName('usuario_id').AsInteger := Pedido.UsuarioId;
     TQuerySQL.ParamByName('data_pedido').AsDateTime := Pedido.DataPedido;
+    TQuerySQL.ParamByName('total').AsCurrency := Pedido.Total;
 
     try
       TQuerySQL.Open;
@@ -51,28 +51,6 @@ begin
     except
       on E: Exception do
         raise Exception.Create('Erro ao adicionar Pedido: ' + E.Message);
-    end;
-  finally
-    TQuerySQL.Free;
-  end;
-end;
-
-function TPedidoRepository.Remover(Id: Integer): Boolean;
-var
-  TQuerySQL: TFDQuery;
-begin
-  Result := False;
-  TQuerySQL := CriarQuery;
-  try
-    TQuerySQL.SQL.Text := 'DELETE FROM PEDIDO WHERE id = :id';
-    TQuerySQL.ParamByName('id').AsInteger := Id;
-
-    try
-      TQuerySQL.ExecSQL;
-      Result := TQuerySQL.RowsAffected > 0;
-    except
-      on E: Exception do
-        raise Exception.Create('Erro ao remover Pedido: ' + E.Message);
     end;
   finally
     TQuerySQL.Free;

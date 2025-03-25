@@ -25,6 +25,7 @@ CREATE TABLE pedido (
   cliente_id INTEGER,
   usuario_id INTEGER,
   data_pedido DATE,
+  total DECIMAL(10,2),
   FOREIGN KEY (cliente_id) REFERENCES cliente (id),
   FOREIGN KEY (usuario_id) REFERENCES usuario (id)
 );

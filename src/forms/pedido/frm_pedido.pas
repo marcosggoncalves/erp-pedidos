@@ -41,8 +41,8 @@ type
     DataSourcePedido: TDataSource;
     ClientSetPedido: TClientDataSet;
     BitBtn1: TBitBtn;
-    btn_finalizar_: TButton;
-    btn_cancelar_: TButton;
+    btn_cancelar_: TBitBtn;
+    btn_finalizar_: TBitBtn;
 
     procedure FormCreate(Sender: TObject);
     procedure carregar_produtos_combobox(Sender: TObject);
@@ -318,10 +318,16 @@ begin
 
     PedidoRepository := TPedidoRepository.Create;
     try
-      Pedido := TPedidoFactory.CriarPedido(0, combo_clientes.KeyValue,
-        DataModule1.logado.Id, Now);
+      Pedido := TPedidoFactory.CriarPedido(
+        0,
+        combo_clientes.KeyValue,
+        DataModule1.logado.Id,
+        Now,
+        calcularTotalPedido
+      );
+
       try
-        Pedido.Id := PedidoRepository.Adicionar(Pedido);
+        Pedido.Id := PedidoRepository.AbrirPedido(Pedido);
 
         ClientSetPedido.First;
         while not ClientSetPedido.Eof do

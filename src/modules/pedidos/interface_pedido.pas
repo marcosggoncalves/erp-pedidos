@@ -7,8 +7,7 @@ uses
 
 type
   IPedidoRepository = interface
-    function Adicionar(Pedido: TPedido): Integer;
-    function Remover(Id: Integer): Boolean;
+    function AbrirPedido(Pedido: TPedido): Integer;
     function InserirProdutoNoPedido(PedidoProduto: TPedidoProduto): Boolean;
     function ListarTodos(tipo: String = ''; search: String = ''): TList<TPedido>;
   end;
