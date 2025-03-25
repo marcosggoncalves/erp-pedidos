@@ -1,10 +1,3 @@
-INSERT INTO USUARIO (CPF, USUARIO, SENHA)
-VALUES (
-    '069.389.071-10', 
-    'MARCOS GONÇALVES', 
-    '1234'
-);
-
 INSERT INTO usuario (cpf, usuario, senha) VALUES
     ('069.389.071-10', 'MARCOS GONÇALVES', '1234');
 INSERT INTO usuario (cpf, usuario, senha) VALUES
