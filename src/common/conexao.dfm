@@ -60,7 +60,7 @@ object dm: Tdm
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45741.174707974500000000
-    ReportOptions.LastChange = 45741.190556875000000000
+    ReportOptions.LastChange = 45741.200174062500000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -80,8 +80,9 @@ object dm: Tdm
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 210.000000000000000000
-      PaperHeight = 297.000000000000000000
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
       PaperSize = 9
       LeftMargin = 10.000000000000000000
       RightMargin = 10.000000000000000000
@@ -98,11 +99,11 @@ object dm: Tdm
         Frame.Typ = []
         Height = 22.677180000000000000
         Top = 18.897650000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Height = 34.015770000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -125,11 +126,11 @@ object dm: Tdm
         Frame.Typ = []
         Height = 22.677180000000000000
         Top = 64.252010000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         object Memo2: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 154.960730000000000000
+          Width = 340.157700000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -137,7 +138,6 @@ object dm: Tdm
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
           Memo.UTF8W = (
             'NOME')
           ParentFont = False
@@ -145,7 +145,7 @@ object dm: Tdm
         object Memo3: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Left = 154.960730000000000000
+          Left = 340.157700000000000000
           Width = 170.078850000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -162,7 +162,7 @@ object dm: Tdm
         object Memo4: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Left = 325.039580000000000000
+          Left = 510.236550000000000000
           Width = 139.842610000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -179,8 +179,8 @@ object dm: Tdm
         object Memo5: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Left = 464.882190000000000000
-          Width = 253.228510000000000000
+          Left = 650.079160000000000000
+          Width = 396.850650000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -203,7 +203,7 @@ object dm: Tdm
         Frame.Typ = []
         Height = 22.677180000000000000
         Top = 147.401670000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         DataSet = frxDBDataset1
         DataSetName = 'frxDBDataset1'
         RowCount = 0
@@ -211,7 +211,7 @@ object dm: Tdm
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
-          Width = 154.960730000000000000
+          Width = 340.157700000000000000
           Height = 18.897650000000000000
           DataField = 'NOME'
           DataSet = frxDBDataset1
@@ -222,7 +222,6 @@ object dm: Tdm
           Font.Name = '@Malgun Gothic'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBDataset1."NOME"]')
           ParentFont = False
@@ -231,7 +230,7 @@ object dm: Tdm
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
-          Left = 325.039580000000000000
+          Left = 510.236550000000000000
           Width = 139.842610000000000000
           Height = 18.897650000000000000
           DataField = 'QUANTIDADE_PEDIDOS'
@@ -252,7 +251,7 @@ object dm: Tdm
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
-          Left = 154.960730000000000000
+          Left = 340.157700000000000000
           Width = 170.078850000000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset1
@@ -274,8 +273,8 @@ object dm: Tdm
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
-          Left = 464.882190000000000000
-          Width = 253.228510000000000000
+          Left = 650.079160000000000000
+          Width = 396.850650000000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset1
           DataSetName = 'frxDBDataset1'
@@ -296,7 +295,7 @@ object dm: Tdm
   object frxDBDataset1: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
-    DataSource = VendasRelatorio
+    DataSet = QryVendasRelatorio
     BCDToCurrency = False
     DataSetOptions = []
     Left = 144

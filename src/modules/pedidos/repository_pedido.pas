@@ -81,7 +81,7 @@ begin
   end;
 end;
 
-function TPedidoRepository.ListarRelatorio(DataInicial : TDate = 0; DataFinal : TDate =0): TList<TPedidoRelatorio>;
+function TPedidoRepository.ListarRelatorio(DataInicial: TDate = 0; DataFinal: TDate = 0): TList<TPedidoRelatorio>;
 var
   TQuerySQL: TFDQuery;
   Pedido: TPedidoRelatorio;
@@ -91,8 +91,9 @@ begin
   TQuerySQL := CriarQuery;
 
   try
-     SQLQuery := 'SELECT C.NOME, SUM(P.TOTAL) AS VALOR_GASTO, COUNT(P.ID) AS QUANTIDADE_PEDIDOS ' +
+    SQLQuery := 'SELECT P.ID, P.DATA_PEDIDO, P.TOTAL, C.NOME AS CLIENTE, U.USUARIO AS VENDEDOR ' +
                 'FROM PEDIDO P ' +
+                'INNER JOIN USUARIO U ON U.ID = P.USUARIO_ID ' +
                 'INNER JOIN CLIENTE C ON C.ID = P.CLIENTE_ID';
 
     if (DataInicial <> 0) and (DataFinal <> 0) then
@@ -100,11 +101,11 @@ begin
       SQLQuery := SQLQuery + ' WHERE P.DATA_PEDIDO BETWEEN :DTINI AND :DTFINAL';
     end;
 
-    SQLQuery := SQLQuery + ' GROUP BY C.ID, C.NOME';
+    SQLQuery := SQLQuery + ' ORDER BY P.DATA_PEDIDO DESC';
 
     TQuerySQL.SQL.Text := SQLQuery;
 
-    if (DataInicial <> 0) and (DataFinal <> 0)  then
+    if (DataInicial <> 0) and (DataFinal <> 0) then
     begin
       TQuerySQL.ParamByName('DTINI').AsDate := DataInicial;
       TQuerySQL.ParamByName('DTFINAL').AsDate := DataFinal;
@@ -115,9 +116,11 @@ begin
     while not TQuerySQL.Eof do
     begin
       Pedido := TPedidoRelatorio.Create;
-      Pedido.Nome := TQuerySQL.FieldByName('NOME').AsString;
-      Pedido.ValorGasto := TQuerySQL.FieldByName('VALOR_GASTO').AsCurrency;
-      Pedido.QuantidadePedidos := TQuerySQL.FieldByName('QUANTIDADE_PEDIDOS').AsInteger;
+      Pedido.ID := TQuerySQL.FieldByName('ID').AsInteger;
+      Pedido.DataPedido := TQuerySQL.FieldByName('DATA_PEDIDO').AsDateTime;
+      Pedido.Total := TQuerySQL.FieldByName('TOTAL').AsCurrency;
+      Pedido.Cliente := TQuerySQL.FieldByName('CLIENTE').AsString;
+      Pedido.Vendedor := TQuerySQL.FieldByName('VENDEDOR').AsString;
       Result.Add(Pedido);
       TQuerySQL.Next;
     end;
@@ -125,5 +128,4 @@ begin
     TQuerySQL.Free;
   end;
 end;
-
 end.

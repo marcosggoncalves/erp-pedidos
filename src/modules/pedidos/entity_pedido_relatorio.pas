@@ -5,13 +5,17 @@ interface
 type
   TPedidoRelatorio = class
   private
-    FNome: string;
-    FValorGasto: Currency;
-    FQuantidadePedidos: Integer;
+    FID: Integer;
+    FDataPedido: TDateTime;
+    FTotal: Currency;
+    FCliente: string;
+    FVeendedor: string;
   public
-    property Nome: string read FNome write FNome;
-    property ValorGasto: Currency read FValorGasto write FValorGasto;
-    property QuantidadePedidos: Integer read FQuantidadePedidos write FQuantidadePedidos;
+    property ID: Integer read FID write FID;
+    property DataPedido: TDateTime read FDataPedido write FDataPedido;
+    property Total: Currency read FTotal write FTotal;
+    property Cliente: string read FCliente write FCliente;
+    property Vendedor: string read FVeendedor write FVeendedor;
   end;
 
 implementation

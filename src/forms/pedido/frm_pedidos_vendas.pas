@@ -61,17 +61,21 @@ begin
     ClientDataSet1.Close;
     ClientDataSet1.FieldDefs.Clear;
 
-    ClientDataSet1.FieldDefs.Add('NOME', ftString, 30);
-    ClientDataSet1.FieldDefs.Add('VALOR GASTO', ftCurrency);
-    ClientDataSet1.FieldDefs.Add('TOTAL PEDIDOS', ftInteger);
+    ClientDataSet1.FieldDefs.Add('ID', ftInteger);
+    ClientDataSet1.FieldDefs.Add('CLIENTE', ftString, 20);
+    ClientDataSet1.FieldDefs.Add('VENDEDOR', ftString, 20);
+    ClientDataSet1.FieldDefs.Add('DATA_PEDIDO', ftDateTime);
+    ClientDataSet1.FieldDefs.Add('TOTAL', ftCurrency);
     ClientDataSet1.CreateDataSet;
 
     for Pedido in Pedidos do
     begin
       ClientDataSet1.Append;
-      ClientDataSet1.FieldByName('NOME').AsString := Pedido.Nome;
-      ClientDataSet1.FieldByName('VALOR GASTO').AsCurrency := Pedido.ValorGasto;
-      ClientDataSet1.FieldByName('TOTAL PEDIDOS').AsCurrency := Pedido.QuantidadePedidos;
+      ClientDataSet1.FieldByName('ID').AsInteger := Pedido.ID;
+      ClientDataSet1.FieldByName('CLIENTE').AsString := Pedido.Cliente;
+      ClientDataSet1.FieldByName('VENDEDOR').AsString := Pedido.Vendedor;
+      ClientDataSet1.FieldByName('DATA_PEDIDO').AsDateTime := Pedido.DataPedido;
+      ClientDataSet1.FieldByName('TOTAL').AsCurrency := Pedido.Total;
       ClientDataSet1.Post;
     end;
 
@@ -81,5 +85,6 @@ begin
     btn_limpar.Enabled := True;
   end;
 end;
+
 
 end.
