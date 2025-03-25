@@ -31,7 +31,8 @@ uses
   factory_pedido in 'src\modules\pedidos\factory_pedido.pas',
   factory_produto_pedido in 'src\modules\pedidos\factory_produto_pedido.pas',
   interface_pedido in 'src\modules\pedidos\interface_pedido.pas',
-  repository_pedido in 'src\modules\pedidos\repository_pedido.pas';
+  repository_pedido in 'src\modules\pedidos\repository_pedido.pas',
+  entity_pedido_relatorio in 'src\modules\pedidos\entity_pedido_relatorio.pas';
 
 {$R *.res}
 

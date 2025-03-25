@@ -157,6 +157,7 @@
         <DCCReference Include="src\modules\pedidos\factory_produto_pedido.pas"/>
         <DCCReference Include="src\modules\pedidos\interface_pedido.pas"/>
         <DCCReference Include="src\modules\pedidos\repository_pedido.pas"/>
+        <DCCReference Include="src\modules\pedidos\entity_pedido_relatorio.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
