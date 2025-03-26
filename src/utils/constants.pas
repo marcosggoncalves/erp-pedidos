@@ -10,15 +10,15 @@ const
   MsgErroAtualizar = 'Erro na atualização cadastral!';
   MsgSalvoSucesso = 'Cadastro efetuado com sucesso!';
   MsgErroSalvar = 'Erro ao salvar cadastro!';
-  MsgIDInvalido = 'ID inv�inválido!';
+  MsgIDInvalido = 'ID inválido!';
   MsgLoginInvalido = 'CPF/Senha inválido!';
-  MsgRemoverItem = 'Voc� tem certeza que deseja remover item?';
+  MsgRemoverItem = 'Você tem certeza que deseja remover item?';
   MsgCampoVazioCliente = 'Selecione um cliente para continuar.';
   MsgCampoVazioProduto = 'Selecione um produto para continuar.';
   MsgCampoVazioQuantidade = 'Informe uma quantidade do produto.';
   MsgFinalizarPedido = 'Deseja finalizar pedido?';
   MsgPedidoFInalizado =  'Pedido finalizado com sucesso!';
-  MsgEstoqueInsuficiente = 'Deseja reomover? estoque insuficiente para o produto: ';
+  MsgEstoqueInsuficiente = 'Deseja remover? estoque insuficiente para o produto: ';
   MsgProdutoNaoEcontrado = 'Produto não encontrado no estoque.';
 
 implementation

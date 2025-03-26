@@ -19,8 +19,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
   PixelsPerInch = 96
   TextHeight = 13
   object label_listagem_produtos: TLabel
-    Left = 203
-    Top = 13
+    Left = 191
+    Top = 15
     Width = 54
     Height = 13
     Caption = 'Produtos:'
@@ -41,6 +41,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     Color = clMenuBar
     ParentBackground = False
     TabOrder = 0
+    ExplicitTop = -8
     object label_pedido_usuario: TLabel
       Left = 12
       Top = 15
@@ -336,9 +337,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
   end
   object dbgrid_lista_pedido: TDBGrid
-    Left = 203
+    Left = 191
     Top = 32
-    Width = 486
+    Width = 498
     Height = 395
     DataSource = DataSourcePedido
     TabOrder = 1
@@ -354,6 +355,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     Top = 435
     Width = 185
     Height = 41
+    Color = clMenuBar
+    ParentBackground = False
     TabOrder = 2
     object labe_escrita_unidades: TLabel
       Left = 32
@@ -389,6 +392,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     Top = 435
     Width = 185
     Height = 41
+    Color = clMenuBar
     ParentBackground = False
     TabOrder = 3
     object label_total: TLabel
