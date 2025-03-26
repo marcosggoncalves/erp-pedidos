@@ -19,8 +19,8 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
   PixelsPerInch = 96
   TextHeight = 13
   object label_listagem_produtos: TLabel
-    Left = 191
-    Top = 15
+    Left = 203
+    Top = 13
     Width = 54
     Height = 13
     Caption = 'Produtos:'
@@ -159,10 +159,13 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       Top = 81
       Width = 161
       Height = 21
+      Hint = 'Selecione um cliente'
       ImeMode = imOpen
       KeyField = 'ID'
       ListField = 'Nome'
       ListSource = DataSourceCliente
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 5
     end
     object BitBtn1: TBitBtn
@@ -333,9 +336,9 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
   end
   object dbgrid_lista_pedido: TDBGrid
-    Left = 191
-    Top = 34
-    Width = 506
+    Left = 203
+    Top = 32
+    Width = 486
     Height = 395
     DataSource = DataSourcePedido
     TabOrder = 1
@@ -347,7 +350,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     OnCellClick = dbgrid_remover_item_click
   end
   object panel_total_itens: TPanel
-    Left = 321
+    Left = 313
     Top = 435
     Width = 185
     Height = 41
@@ -371,7 +374,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
       Width = 13
       Height = 24
       Caption = '0'
-      Color = clBlue
+      Color = clNavy
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clHotLight
       Font.Height = -20
@@ -382,7 +385,7 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     end
   end
   object panel_total: TPanel
-    Left = 512
+    Left = 504
     Top = 435
     Width = 185
     Height = 41

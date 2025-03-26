@@ -25,6 +25,8 @@ type
     Image1: TImage;
     Relatrios1: TMenuItem;
     Vendasporcliente1: TMenuItem;
+    Produtosforadoestoque1: TMenuItem;
+    Produtosmaisvendidos1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
@@ -33,6 +35,8 @@ type
     procedure NovoPedido2Click(Sender: TObject);
     procedure NovoPedido1Click(Sender: TObject);
     procedure Vendasporcliente1Click(Sender: TObject);
+    procedure Produtosforadoestoque1Click(Sender: TObject);
+    procedure Produtosmaisvendidos1Click(Sender: TObject);
   end;
 
 var
@@ -129,13 +133,31 @@ end;
 
 procedure TTfrm_home.Vendasporcliente1Click(Sender: TObject);
 begin
-  // Verificar se o Dataset está Aberto Antes do Refresh
+  // Verificar se o dataset está aberto antes do refresh
   if not dm.QryVendasRelatorio.Active then
     dm.QryVendasRelatorio.Open;
 
-  // Abrir relatório vendas por cliente
+  // Abrir relatório
   dm.QryVendasRelatorio.Refresh;
   dm.RelatorioVendas.ShowReport();
+end;
+
+procedure TTfrm_home.Produtosforadoestoque1Click(Sender: TObject);
+begin
+  if not dm.QryEstoqueBaixo.Active then
+    dm.QryEstoqueBaixo.Open;
+
+  dm.QryEstoqueBaixo.Refresh;
+  dm.RelatorioEstoqueBaixo.ShowReport();
+end;
+
+procedure TTfrm_home.Produtosmaisvendidos1Click(Sender: TObject);
+begin
+  if not dm.QueryProdutosMaisVendidos.Active then
+    dm.QueryProdutosMaisVendidos.Open;
+
+  dm.QueryProdutosMaisVendidos.Refresh;
+  dm.RelatorioProdutosMaisVendidos.ShowReport();
 end;
 
 end.

@@ -57,6 +57,7 @@ begin
       FrmHome :=  TTfrm_home.Create(Self);
       FrmHome.ShowModal;
       FrmHome := nil;
+
       Self.Close;  
     end
     else

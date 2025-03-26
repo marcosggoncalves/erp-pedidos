@@ -5,7 +5,7 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
   BorderStyle = bsSingle
   Caption = 'Pedidos '
   ClientHeight = 484
-  ClientWidth = 705
+  ClientWidth = 744
   Color = clMenuBar
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
   object abas_vendas: TPageControl
     Left = 0
     Top = 0
-    Width = 705
+    Width = 744
     Height = 484
     ActivePage = aba_vendas
     Align = alClient
@@ -28,8 +28,10 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
     ShowHint = False
     TabOrder = 0
     StyleElements = [seFont, seClient]
+    ExplicitWidth = 705
     object aba_vendas: TTabSheet
       Caption = 'Vendas'
+      ExplicitWidth = 697
       object panel_btns_pesquisa: TPanel
         Left = 0
         Top = 0
@@ -198,7 +200,7 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
       object DBGrid1: TDBGrid
         Left = 185
         Top = 0
-        Width = 512
+        Width = 551
         Height = 456
         Align = alClient
         DataSource = DataSource1

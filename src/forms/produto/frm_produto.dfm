@@ -330,10 +330,6 @@ object Tfrm_produto: TTfrm_produto
     object aba_produto_pesquisa: TTabSheet
       Caption = 'Pesquisa'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object titulo_filtro_nome: TLabel
         Left = 12
         Top = 57
@@ -557,6 +553,7 @@ object Tfrm_produto: TTfrm_produto
           Top = 38
           Width = 161
           Height = 21
+          CharCase = ecUpperCase
           TabOrder = 1
           TextHint = 'DIGITE SUA PESQUISA'
         end

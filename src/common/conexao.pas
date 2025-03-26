@@ -18,10 +18,15 @@ type
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     QryVendasRelatorio: TFDQuery;
-    VendasRelatorio: TDataSource;
     RelatorioVendas: TfrxReport;
     frxDBDataset1: TfrxDBDataset;
     frxPDFExport1: TfrxPDFExport;
+    QryEstoqueBaixo: TFDQuery;
+    RelatorioEstoqueBaixo: TfrxReport;
+    frxDBDataset2: TfrxDBDataset;
+    frxDBDataset3: TfrxDBDataset;
+    RelatorioProdutosMaisVendidos: TfrxReport;
+    QueryProdutosMaisVendidos: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     procedure LerIni;

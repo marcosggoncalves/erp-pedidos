@@ -45,13 +45,8 @@ object dm: Tdm
       'INNER JOIN CLIENTE C ON C.ID = P.CLIENTE_ID'
       'INNER JOIN USUARIO U ON U.ID = P.USUARIO_ID'
       'GROUP BY C.ID, C.NOME, U.USUARIO;')
-    Left = 40
-    Top = 144
-  end
-  object VendasRelatorio: TDataSource
-    DataSet = QryVendasRelatorio
-    Left = 40
-    Top = 232
+    Left = 32
+    Top = 120
   end
   object RelatorioVendas: TfrxReport
     Version = '2022.2.10'
@@ -68,8 +63,8 @@ object dm: Tdm
       'begin'
       ''
       'end.')
-    Left = 144
-    Top = 152
+    Left = 32
+    Top = 176
     Datasets = <
       item
         DataSet = frxDBDataset1
@@ -300,7 +295,7 @@ object dm: Tdm
     DataSet = QryVendasRelatorio
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 144
+    Left = 32
     Top = 232
   end
   object frxPDFExport1: TfrxPDFExport
@@ -329,7 +324,419 @@ object dm: Tdm
     PdfA = False
     PDFStandard = psNone
     PDFVersion = pv17
-    Left = 144
-    Top = 312
+    Left = 32
+    Top = 304
+  end
+  object QryEstoqueBaixo: TFDQuery
+    Active = True
+    Connection = FDConexao
+    SQL.Strings = (
+      'SELECT ID,NOME,QUANTIDADE_ESTOQUE  FROM PRODUTO '
+      'WHERE QUANTIDADE_ESTOQUE <= 0')
+    Left = 136
+    Top = 120
+  end
+  object RelatorioEstoqueBaixo: TfrxReport
+    Version = '2022.2.10'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45742.105359919000000000
+    ReportOptions.LastChange = 45742.110460648150000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 136
+    Top = 176
+    Datasets = <
+      item
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+      MirrorMode = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 18.897650000000000000
+        Width = 1046.929810000000000000
+        object Memo1: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 3.779530000000000000
+          Width = 1046.929810000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'RELAT'#211'RIO DE PRODUTOS FORA DO ESTOQUE')
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 64.252010000000000000
+        Width = 1046.929810000000000000
+        object Memo2: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 207.874150000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'ID')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 207.874150000000000000
+          Width = 351.496290000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'NOME')
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 559.370440000000000000
+          Width = 487.559370000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'QUANTIDADE')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 147.401670000000000000
+        Width = 1046.929810000000000000
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        RowCount = 0
+        object frxDBDataset2ID: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 207.874150000000000000
+          Height = 18.897650000000000000
+          DataField = 'ID'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."ID"]')
+          ParentFont = False
+        end
+        object frxDBDataset2NOME: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 207.874150000000000000
+          Width = 351.496290000000000000
+          Height = 18.897650000000000000
+          DataField = 'NOME'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."NOME"]')
+          ParentFont = False
+        end
+        object frxDBDataset2QUANTIDADE_ESTOQUE: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 559.370440000000000000
+          Width = 487.559370000000000000
+          Height = 18.897650000000000000
+          DataField = 'QUANTIDADE_ESTOQUE'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."QUANTIDADE_ESTOQUE"]')
+          ParentFont = False
+        end
+      end
+    end
+  end
+  object frxDBDataset2: TfrxDBDataset
+    UserName = 'frxDBDataset2'
+    CloseDataSource = False
+    DataSet = QryEstoqueBaixo
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 136
+    Top = 232
+  end
+  object frxDBDataset3: TfrxDBDataset
+    UserName = 'frxDBDataset3'
+    CloseDataSource = False
+    DataSet = QueryProdutosMaisVendidos
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 280
+    Top = 240
+  end
+  object RelatorioProdutosMaisVendidos: TfrxReport
+    Version = '2022.2.10'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45742.119949039300000000
+    ReportOptions.LastChange = 45742.129605173610000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 280
+    Top = 176
+    Datasets = <
+      item
+        DataSet = frxDBDataset3
+        DataSetName = 'frxDBDataset3'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+      MirrorMode = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 18.897650000000000000
+        Width = 1046.929810000000000000
+        object Memo1: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 1046.929810000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'RELAT'#211'RIO PRODUTOS MAIS VENDIDOS')
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 64.252010000000000000
+        Width = 1046.929810000000000000
+        object Memo2: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 453.543600000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            'PRODUTO')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 453.543600000000000000
+          Width = 593.386210000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'TOTAL VENDIDOS')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 147.401670000000000000
+        Width = 1046.929810000000000000
+        DataSet = frxDBDataset3
+        DataSetName = 'frxDBDataset3'
+        RowCount = 0
+        object frxDBDataset3PRODUTO: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 453.543600000000000000
+          Height = 18.897650000000000000
+          DataField = 'PRODUTO'
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            '[frxDBDataset3."PRODUTO"]')
+          ParentFont = False
+        end
+        object frxDBDataset3TOTAL_VENDIDOS: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 453.543600000000000000
+          Width = 593.386210000000000000
+          Height = 18.897650000000000000
+          DataField = 'TOTAL_VENDIDOS'
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset3."TOTAL_VENDIDOS"]')
+          ParentFont = False
+        end
+      end
+    end
+  end
+  object QueryProdutosMaisVendidos: TFDQuery
+    Active = True
+    Connection = FDConexao
+    SQL.Strings = (
+      'SELECT '
+      '    P.NOME AS PRODUTO,'
+      '    SUM(PP.QUANTIDADE) AS TOTAL_VENDIDOS'
+      'FROM PEDIDO_PRODUTO PP'
+      'INNER JOIN PRODUTO P ON P.ID = PP.PRODUTO_ID'
+      'GROUP BY P.NOME'
+      'ORDER BY TOTAL_VENDIDOS DESC;')
+    Left = 272
+    Top = 120
   end
 end

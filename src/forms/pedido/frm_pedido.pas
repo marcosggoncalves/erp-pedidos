@@ -329,8 +329,14 @@ begin
       try
         if not ProdutoRepository.AlterarEstoque(ClientSetPedido.FieldByName('ID').AsInteger,ClientSetPedido.FieldByName('Quantidade').AsInteger) then
         begin
-          ShowMessage(MsgEstoqueInsuficiente + ClientSetPedido.FieldByName('Produto').AsString);
-          exit;
+          if MessageDlg(MsgEstoqueInsuficiente + ClientSetPedido.FieldByName('Produto').AsString, mtConfirmation, [mbYes, mbCancel], 0) = mrYes then
+            begin
+                ClientSetPedido.Delete;
+
+                // Atualiza totalizadores em tela, panel
+                mostrar_calculo_panel(self);
+            end;
+            exit;
         end;
       finally
         ProdutoRepository.Free;

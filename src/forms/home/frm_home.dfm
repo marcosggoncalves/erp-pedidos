@@ -1003,6 +1003,14 @@ object Tfrm_home: TTfrm_home
         Caption = 'Vendas por cliente'
         OnClick = Vendasporcliente1Click
       end
+      object Produtosforadoestoque1: TMenuItem
+        Caption = 'Produtos fora do estoque'
+        OnClick = Produtosforadoestoque1Click
+      end
+      object Produtosmaisvendidos1: TMenuItem
+        Caption = 'Produtos mais vendidos'
+        OnClick = Produtosmaisvendidos1Click
+      end
     end
     object Sair1: TMenuItem
       Caption = 'Sistema'
