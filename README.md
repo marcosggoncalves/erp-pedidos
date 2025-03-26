@@ -60,7 +60,7 @@ O projeto está organizado para facilitar manutenção, as pastas seguem um padr
 Baixe e instale o Firebird 3 em seu sistema:
 - Link oficial: [https://firebirdsql.org/en/firebird-3-0/](https://firebirdsql.org/en/firebird-3-0/)
 
-Durante a instalação, mantenha as configurações padrão e certifique-se de que o serviço do Firebird está em execução.
+Durante a instalação, mantenha as configurações padrão e certifique-se que o serviço do Firebird está em execução.
 
 ### 2. Configuração da conexão com o banco de dados
 
