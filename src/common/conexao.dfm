@@ -33,7 +33,6 @@ object dm: Tdm
     Top = 48
   end
   object QryVendasRelatorio: TFDQuery
-    Active = True
     Connection = FDConexao
     SQL.Strings = (
       'SELECT '
@@ -44,7 +43,8 @@ object dm: Tdm
       'FROM PEDIDO P'
       'INNER JOIN CLIENTE C ON C.ID = P.CLIENTE_ID'
       'INNER JOIN USUARIO U ON U.ID = P.USUARIO_ID'
-      'GROUP BY C.ID, C.NOME, U.USUARIO;')
+      'GROUP BY C.ID, C.NOME, U.USUARIO'
+      'ORDER BY QUANTIDADE_PEDIDOS DESC, VALOR_GASTO DESC;')
     Left = 32
     Top = 120
   end

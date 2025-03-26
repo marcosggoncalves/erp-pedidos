@@ -23,9 +23,14 @@ type
     DBGrid1: TDBGrid;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
+    panel_total: TPanel;
+    label_total: TLabel;
+    label_escrita_total: TLabel;
     // Prodecures "ABA PESQUISA"
     procedure btn_pesquisa_click(Sender: TObject);
     procedure btn_pesquisa_limpar_click(Sender: TObject);
+
+    function calcularTotalPedido: Currency;
   private
     PedidoRepository: TPedidoRepository;
   public
@@ -41,6 +46,8 @@ implementation
 
 procedure TTfrm_pedidos_vendas.btn_pesquisa_limpar_click(Sender: TObject);
 begin
+  label_total.Caption := '0,00';
+
   btn_limpar.Enabled := False;
 
   date_inicial.Date := now;
@@ -83,7 +90,33 @@ begin
   finally
     PedidoRepository.Free;
     btn_limpar.Enabled := True;
+
+    label_total.Caption := FormatFloat('#,##0.00', calcularTotalPedido);
   end;
+end;
+
+function TTfrm_pedidos_vendas.calcularTotalPedido: Currency;
+var
+  Total: Currency;
+begin
+  Total := 0;
+
+  if ClientDataSet1.Active and (ClientDataSet1.RecordCount > 0) then
+  begin
+    ClientDataSet1.DisableControls;
+    try
+      ClientDataSet1.First;
+      while not ClientDataSet1.Eof do
+      begin
+        Total := Total + ClientDataSet1.FieldByName('TOTAL').AsCurrency;
+        ClientDataSet1.Next;
+      end;
+    finally
+      ClientDataSet1.EnableControls;
+    end;
+  end;
+
+  Result := Total;
 end;
 
 

@@ -41,7 +41,6 @@ object TFrm_lancar_pedido: TTFrm_lancar_pedido
     Color = clMenuBar
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = -8
     object label_pedido_usuario: TLabel
       Left = 12
       Top = 15

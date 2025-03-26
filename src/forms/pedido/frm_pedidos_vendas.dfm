@@ -28,10 +28,12 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
     ShowHint = False
     TabOrder = 0
     StyleElements = [seFont, seClient]
-    ExplicitWidth = 705
+    ExplicitLeft = 8
+    ExplicitTop = -8
     object aba_vendas: TTabSheet
       Caption = 'Vendas'
-      ExplicitWidth = 697
+      ExplicitLeft = 8
+      ExplicitTop = 28
       object panel_btns_pesquisa: TPanel
         Left = 0
         Top = 0
@@ -201,8 +203,8 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
         Left = 185
         Top = 0
         Width = 551
-        Height = 456
-        Align = alClient
+        Height = 393
+        Align = alCustom
         DataSource = DataSource1
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -211,17 +213,54 @@ object Tfrm_pedidos_vendas: TTfrm_pedidos_vendas
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
       end
+      object panel_total: TPanel
+        Left = 548
+        Top = 399
+        Width = 185
+        Height = 41
+        Color = clMenuBar
+        ParentBackground = False
+        TabOrder = 2
+        object label_total: TLabel
+          Left = 44
+          Top = 16
+          Width = 35
+          Height = 19
+          Caption = '0,00'
+          Color = clBlue
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHotLight
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object label_escrita_total: TLabel
+          Left = 9
+          Top = 24
+          Width = 21
+          Height = 14
+          Caption = 'R$:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
     end
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 636
-    Top = 304
+    Left = 692
+    Top = 40
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 636
-    Top = 376
+    Left = 692
+    Top = 88
   end
 end

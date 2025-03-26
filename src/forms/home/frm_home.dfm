@@ -22,7 +22,7 @@ object Tfrm_home: TTfrm_home
     Left = 0
     Top = 0
     Width = 714
-    Height = 477
+    Height = 471
     Align = alClient
     AutoSize = True
     ParentShowHint = False
@@ -943,9 +943,9 @@ object Tfrm_home: TTfrm_home
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 477
+    Top = 471
     Width = 714
-    Height = 19
+    Height = 25
     Panels = <
       item
         Alignment = taCenter
@@ -961,12 +961,13 @@ object Tfrm_home: TTfrm_home
       end
       item
         Alignment = taCenter
-        Width = 250
+        Width = 100
       end
       item
         Alignment = taCenter
         Width = 60
       end>
+    ExplicitTop = 477
   end
   object MainMenu1: TMainMenu
     Left = 16
