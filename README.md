@@ -81,4 +81,7 @@ DATABASE=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\database\dados\ERP.F
 
 1. Navegue até a pasta `/bin/`.
 2. Execute o arquivo `erp_pedidos.exe`.
+  1. Acesso
+      CPF: 000.000.000-00
+      Senha: 1234
 
