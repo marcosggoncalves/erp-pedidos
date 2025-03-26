@@ -9,7 +9,7 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase, frxClass,
-  frxExportBaseDialog, frxExportPDF, frxDBSet;
+  frxExportBaseDialog, frxExportPDF, frxDBSet, System.IniFiles;
 
 type
   Tdm = class(TDataModule)
@@ -22,8 +22,9 @@ type
     RelatorioVendas: TfrxReport;
     frxDBDataset1: TfrxDBDataset;
     frxPDFExport1: TfrxPDFExport;
+    procedure DataModuleCreate(Sender: TObject);
   private
-    { Private declarations }
+    procedure LerIni;
   public
     { Public declarations }
   end;
@@ -34,7 +35,35 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
-
 {$R *.dfm}
+{ Tdm }
+
+procedure Tdm.DataModuleCreate(Sender: TObject);
+begin
+   LerIni;
+end;
+
+procedure Tdm.LerIni;
+var
+  Lini: TiniFile;
+begin
+  Lini := TiniFile.Create(ExtractFilePath(ParamStr(0)) + 'conf.ini');
+  try
+    FDConexao.Params.Clear;
+
+    FDConexao.Params.Values['DriverID'] := Lini. ReadString('CONEXAO','DriverID', 'FB');
+    FDConexao.Params.Values['Server'] := Lini.ReadString('CONEXAO', 'SERVER', '');
+    FDConexao.Params.Values['User_Name'] := Lini.ReadString('CONEXAO', 'USER', '');
+    FDConexao.Params.Values['Password'] := Lini.ReadString('CONEXAO', 'SENHA', '');
+    FDConexao.Params.Values['Port'] := Lini.ReadString('CONEXAO', 'Port', '3050');
+    FDConexao.Params.Values['Database'] := Lini.ReadString('CONEXAO', 'DATABASE', '');
+    FDConexao.Params.Values['CharacterSet'] := Lini.ReadString('CONEXAO', 'CharacterSet', 'UTF8');
+
+    FDConexao.Connected := True;
+  finally
+    Lini.Free;
+  end;
+end;
 
 end.
+

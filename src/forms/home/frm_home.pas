@@ -129,6 +129,10 @@ end;
 
 procedure TTfrm_home.Vendasporcliente1Click(Sender: TObject);
 begin
+  // Verificar se o Dataset está Aberto Antes do Refresh
+  if not dm.QryVendasRelatorio.Active then
+    dm.QryVendasRelatorio.Open;
+
   // Abrir relatório vendas por cliente
   dm.QryVendasRelatorio.Refresh;
   dm.RelatorioVendas.ShowReport();

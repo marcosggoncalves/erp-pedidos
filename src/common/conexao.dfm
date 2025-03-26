@@ -1,15 +1,17 @@
 object dm: Tdm
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 409
   Width = 643
   object FDConexao: TFDConnection
     Params.Strings = (
+      'Port=3050'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
       
         'Database=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\data' +
         'base\dados\ERP.FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'Port=3050'
+      'Pooled='
       'DriverID=fB')
     Connected = True
     Left = 32

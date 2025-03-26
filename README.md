@@ -53,3 +53,32 @@ O projeto está organizado para facilitar manutenção, as pastas seguem um padr
   /forms/    - Interface gráfica da aplicação em VCL.
 ```
 
+## Instalação
+
+### 1. Instalação Firebird 3
+
+Baixe e instale o Firebird 3 em seu sistema:
+- Link oficial: [https://firebirdsql.org/en/firebird-3-0/](https://firebirdsql.org/en/firebird-3-0/)
+
+Durante a instalação, mantenha as configurações padrão e certifique-se de que o serviço do Firebird está em execução.
+
+### 2. Configuração da conexão com o banco de dados
+
+Será necessário configurar os parametros de acesso do banco de dados `conf.ini`, localizado na basta `/bin/`;
+
+O arquivos de dados está localizado `database\dados\ERP.FDB`, só alterar o caminho no seu arquivo cong=f;
+
+```
+[CONEXAO]
+SERVER=localhost
+USER=SYSDBA
+SENHA=masterkey
+PORT=3050
+DATABASE=C:\Users\Marcos Lopes\Desktop\Projetos\erp-pedidos\database\dados\ERP.FDB
+```
+
+### 3. Executar o sistema
+
+1. Navegue até a pasta `/bin/`.
+2. Execute o arquivo `erp_pedidos.exe`.
+
